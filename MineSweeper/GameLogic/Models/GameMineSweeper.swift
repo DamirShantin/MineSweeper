@@ -10,17 +10,14 @@ protocol GameMineSweeperProtocol {
     var field: [[Int]] {get set}
     var bombs: [[Int]] {get set}
     
-    func mineSweeper(bombs: [[Int]], rows: Int, columns: Int) -> [[Int]]
-    func createMineSweeper()
+    func createMineSweeper(bombs: [[Int]], rows: Int, columns: Int) -> [[Int]]
 }
 
 class GameMineSweeper: GameMineSweeperProtocol {
-    
-    
     var field: [[Int]] = [[]]
     var bombs: [[Int]] = [[]]
     
-    func mineSweeper(bombs: [[Int]], rows: Int, columns: Int) -> [[Int]] {
+    func createMineSweeper(bombs: [[Int]], rows: Int, columns: Int) -> [[Int]] {
         var field = Array(repeating: Array(repeating: 0, count: columns), count: rows)
         
         for bomb in bombs {
@@ -39,8 +36,6 @@ class GameMineSweeper: GameMineSweeperProtocol {
         return field
     }
     
-    func createMineSweeper(rows: Int, columns: Int) {
-        self.field = mineSweeper(bombs: self.bombs, rows: rows, columns: columns)
-    }
+
 }
 

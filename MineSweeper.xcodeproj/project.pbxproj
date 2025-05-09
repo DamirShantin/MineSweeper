@@ -11,6 +11,9 @@
 		3FD8C6042DBFDEA00042D56A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8C6032DBFDEA00042D56A /* ContentView.swift */; };
 		3FD8C6062DBFDEA30042D56A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FD8C6052DBFDEA30042D56A /* Assets.xcassets */; };
 		3FD8C6092DBFDEA30042D56A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FD8C6082DBFDEA30042D56A /* Preview Assets.xcassets */; };
+		3FD8C6132DBFEDA90042D56A /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8C6122DBFEDA90042D56A /* LinkedList.swift */; };
+		3FD8C6152DBFEDD30042D56A /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8C6142DBFEDD30042D56A /* Queue.swift */; };
+		3FD8C61D2DC16D820042D56A /* GameMineSweeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8C61C2DC16D820042D56A /* GameMineSweeper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,9 @@
 		3FD8C6032DBFDEA00042D56A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3FD8C6052DBFDEA30042D56A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3FD8C6082DBFDEA30042D56A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3FD8C6122DBFEDA90042D56A /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
+		3FD8C6142DBFEDD30042D56A /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		3FD8C61C2DC16D820042D56A /* GameMineSweeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMineSweeper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +57,9 @@
 		3FD8C6002DBFDEA00042D56A /* MineSweeper */ = {
 			isa = PBXGroup;
 			children = (
+				3FD8C61A2DC16D450042D56A /* GameLogic */,
+				3FD8C6162DC16CF00042D56A /* Modules */,
+				3FD8C60F2DBFED5E0042D56A /* Helpers */,
 				3FD8C6012DBFDEA00042D56A /* MineSweeperApp.swift */,
 				3FD8C6032DBFDEA00042D56A /* ContentView.swift */,
 				3FD8C6052DBFDEA30042D56A /* Assets.xcassets */,
@@ -65,6 +74,78 @@
 				3FD8C6082DBFDEA30042D56A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3FD8C60F2DBFED5E0042D56A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3FD8C6112DBFED930042D56A /* Queue */,
+				3FD8C6102DBFED6D0042D56A /* LinkedList */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3FD8C6102DBFED6D0042D56A /* LinkedList */ = {
+			isa = PBXGroup;
+			children = (
+				3FD8C6122DBFEDA90042D56A /* LinkedList.swift */,
+			);
+			path = LinkedList;
+			sourceTree = "<group>";
+		};
+		3FD8C6112DBFED930042D56A /* Queue */ = {
+			isa = PBXGroup;
+			children = (
+				3FD8C6142DBFEDD30042D56A /* Queue.swift */,
+			);
+			path = Queue;
+			sourceTree = "<group>";
+		};
+		3FD8C6162DC16CF00042D56A /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				3FD8C6192DC16D210042D56A /* ViewModel */,
+				3FD8C6182DC16D1B0042D56A /* View */,
+				3FD8C6172DC16D050042D56A /* Model */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		3FD8C6172DC16D050042D56A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3FD8C6182DC16D1B0042D56A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3FD8C6192DC16D210042D56A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3FD8C61A2DC16D450042D56A /* GameLogic */ = {
+			isa = PBXGroup;
+			children = (
+				3FD8C61B2DC16D610042D56A /* Models */,
+			);
+			path = GameLogic;
+			sourceTree = "<group>";
+		};
+		3FD8C61B2DC16D610042D56A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3FD8C61C2DC16D820042D56A /* GameMineSweeper.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +218,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FD8C61D2DC16D820042D56A /* GameMineSweeper.swift in Sources */,
+				3FD8C6132DBFEDA90042D56A /* LinkedList.swift in Sources */,
 				3FD8C6042DBFDEA00042D56A /* ContentView.swift in Sources */,
 				3FD8C6022DBFDEA00042D56A /* MineSweeperApp.swift in Sources */,
+				3FD8C6152DBFEDD30042D56A /* Queue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
