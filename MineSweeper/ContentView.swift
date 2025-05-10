@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var main = Coordinator.shared
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            NavigationStack (path: $main.path) {
+                MenuView()
+                
+                Group {}
+                    .navigationDestination(for: Coordinator.Step.self) { destination in
+                        destination.view
+                    }
+            }
         }
-        .padding()
     }
 }
 
