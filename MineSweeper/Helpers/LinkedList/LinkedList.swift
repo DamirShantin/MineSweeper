@@ -72,7 +72,6 @@ struct LinkedList<T>: CustomStringConvertible {
         if next == nil {
             tail = prev
         }
-        
         return node.value
     }
 }

@@ -36,6 +36,8 @@ class GameMineSweeper: GameMineSweeperProtocol {
         return field
     }
     
-
+//    func click(field: inout [[Int]]) -> [[Int]] {
+//        
+//    }
 }
 
