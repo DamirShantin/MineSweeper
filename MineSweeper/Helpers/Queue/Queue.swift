@@ -15,6 +15,10 @@ struct Queue<T>: CustomStringConvertible {
         list.description
     }
     
+    var isEmpty: Bool {
+        return list.isEmpty
+    }
+    
     mutating func enqueue(element: T) {
         list.append(value: element)
     }
@@ -23,4 +27,5 @@ struct Queue<T>: CustomStringConvertible {
         list.remove(node: elem)
         return elem.value
     }
+    
 }

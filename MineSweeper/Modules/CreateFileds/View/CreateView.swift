@@ -10,9 +10,10 @@ import SwiftUI
 struct CreateView: View {
     @StateObject var vm = CreateFieldsViewModel()
     var body: some View {
-        VStack {
+        VStack() {
             Text("You can create a new field")
             Button ("Создать 20 Х 20") {
+                vm.clearField()
                 withAnimation {
                     vm.columns = 20
                     vm.rows = 20
@@ -23,6 +24,7 @@ struct CreateView: View {
             }
             
             Button ("Создать 15 Х 15") {
+                vm.clearField()
                     withAnimation {
                         vm.columns = 15
                         vm.rows = 15
@@ -33,7 +35,20 @@ struct CreateView: View {
                 print("Поле обновилось2")
             }
             
-            GridView(vm: vm, rows: vm.rows, columns: vm.columns)
+            Button ("Создать поле") {
+                vm.clearField()
+                vm.createBomb()
+                vm.createMineSweeperField()
+            }
+            
+            GridView(rows: vm.rows, columns: vm.columns) { row, col in
+                CellView(isActive: $vm.field[row][col])
+                    .onTapGesture {
+                        vm.field[row][col].toggle()
+                    }
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 400)
         }
     }
 }

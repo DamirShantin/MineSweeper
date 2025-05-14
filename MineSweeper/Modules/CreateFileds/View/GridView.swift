@@ -7,38 +7,33 @@
 
 import SwiftUI
 
-struct GridView: View {
-    
-    @StateObject var vm: CreateFieldsViewModel
+struct GridView<Content: View> : View {
     
     var rows: Int
     var columns: Int
+    var content: (Int, Int) -> Content
+    
+    init(rows: Int, columns: Int, @ViewBuilder content: @escaping (Int, Int) -> Content) {
+        self.rows = rows
+        self.columns = columns
+        self.content = content
+    }
     
     
     var body: some View {
-        VStack {
-            fieldOne(rows: rows, columns: columns)
-        }
-
-        
-    }
-    
-    @ViewBuilder
-    func fieldOne(rows: Int, columns: Int) -> some View {
         VStack(spacing: 0) {
             ForEach(0..<rows, id: \.self) { row in
                 HStack(spacing: 0){
                     ForEach(0..<columns, id: \.self) { col in
-                        CellView(isActive: $vm.field[row][col])
-                            .onTapGesture {
-                                vm.field[row][col].toggle()
-                            }
+                        content(row, col)
                     }
                     
                 }
             }
             
         }
+
+        
     }
 }
 

@@ -10,6 +10,8 @@ import Foundation
 class CreateFieldsViewModel: ObservableObject {
     @Published var field = [[Bool]]()
     
+    var game = GameMineSweeper()
+    
     var rows: Int
     var columns: Int
     
@@ -25,5 +27,25 @@ class CreateFieldsViewModel: ObservableObject {
         let grid = Array(repeating: Array(repeating: true, count: self.columns), count: rows)
         self.field = grid
         print("\(rows) X \(columns)")
+    }
+    
+    func createBomb() {
+        for i in 0 ... rows - 1 {
+            for j in 0 ... columns - 1 {
+                if field[i][j] == false {
+                    self.game.bombs.append([i,j])
+                }
+            }
+        }
+    }
+    
+    func clearField(){
+        self.game.field = [[Int]]()
+        self.game.bombs = [[Int]]()
+    }
+    
+    func createMineSweeperField() {
+        game.createMineSweeper(bombs: game.bombs, rows: rows, columns: columns)
+        
     }
 }
