@@ -31,9 +31,7 @@ struct GridView<Content: View> : View {
                 }
             }
             
-        }
-
-        
+        }  
     }
 }
 
