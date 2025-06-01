@@ -10,7 +10,7 @@ import Foundation
 class CreateFieldsViewModel: ObservableObject {
     @Published var field = [[Bool]]()
     
-    var game = GameMineSweeper()
+    var game = GameLogicMineSweeper()
     
     var rows: Int
     var columns: Int

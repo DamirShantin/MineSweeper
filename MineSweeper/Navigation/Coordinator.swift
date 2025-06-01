@@ -14,13 +14,14 @@ final class Coordinator: ObservableObject {
     @Published var path = [Step]()
     
     enum Step: Hashable {
-        case game, create
+        case game, create, preGame
         
         var view: some View {
             Group {
                 switch self {
-                case .game: GameView()
-                case .create: CreateView()
+                case .preGame: PreGameViewImpl()
+                case .create: CreateViewImpl()
+                case .game: GameViewImpl()
                 }
             }
         }

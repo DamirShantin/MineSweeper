@@ -12,7 +12,7 @@ struct MenuView: View {
     
     var body: some View {
         VStack {
-            Button("Играть") { coordinator.next(.game)}
+            Button("Играть") { coordinator.next(.preGame)}
             Button("Создать поле") { coordinator.next(.create)}
             
         }

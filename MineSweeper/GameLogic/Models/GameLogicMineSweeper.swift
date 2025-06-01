@@ -6,17 +6,21 @@
 //
 
 import Foundation
-protocol GameMineSweeperProtocol {
+protocol GameLogicMineSweeperProtocol {
     var field: [[Int]] {get set}
     var bombs: [[Int]] {get set}
+    var checkBombs: [[Int]] {get set}
     
     func createMineSweeper(bombs: [[Int]], rows: Int, columns: Int)
     func click(field: inout [[Int]], givenI: Int, givenJ: Int) -> [[Int]]
 }
 
-class GameMineSweeper: GameMineSweeperProtocol {
+class GameLogicMineSweeper: GameLogicMineSweeperProtocol {
+    
     var field = [[Int]]()
     var bombs = [[Int]]()
+    var checkBombs = [[Int]]()
+    
     
     func createMineSweeper(bombs: [[Int]], rows: Int, columns: Int) {
         var field = Array(repeating: Array(repeating: 0, count: columns), count: rows)
@@ -63,5 +67,6 @@ class GameMineSweeper: GameMineSweeperProtocol {
         return field
 
     }
+    
 }
 

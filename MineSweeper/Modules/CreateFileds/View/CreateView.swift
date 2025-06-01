@@ -8,24 +8,26 @@
 import SwiftUI
 
 struct CreateView: View {
-    @StateObject var vm = CreateFieldsViewModel()
+    @StateObject var vm : CreateFieldsViewModel
+    var storage: StorageModel
     
     @State private var selectedRows: Int = 10
     @State private var selectedColumns: Int = 10
+    @State var showAlert: Bool  = false
+    @State var nameOfField: String = ""
     
-    let array = [4, 5,6,7,8,9,10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    let array = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
     
     var body: some View {
         VStack() {
             Spacer()
             Text("You can create a new field")
+                .font(.title)
             
             HStack {
                 Picker("rows", selection: $selectedRows) {
                     ForEach(array, id: \.self) { row in
                         Text("\(row)")
-                            .foregroundStyle(.black)
-                            .frame(height: 75)
                     }
                 }
                 .pickerStyle(.wheel)
@@ -76,13 +78,22 @@ struct CreateView: View {
                 vm.clearField()
                 vm.createBomb()
                 vm.createMineSweeperField()
+                showAlert = true
             }
+            .buttonStyle(.bordered)
+            .foregroundStyle(.black)
+            .alert("Введите название", isPresented: $showAlert) {
+                TextField("Название", text: $nameOfField)
+                Button("Ок") {
+                    self.storage.saveData(name: nameOfField, field: vm.game.field)
+                    self.nameOfField = ""
+                    vm.clearField()
+                }
+            }
+            
             Spacer()
             
         }
     }
 }
 
-#Preview {
-    CreateView()
-}
