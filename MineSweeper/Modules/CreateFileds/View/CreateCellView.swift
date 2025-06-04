@@ -11,7 +11,7 @@ enum StateCell {
     case bomb, notBomb
 }
 
-struct CellView: View {
+struct CreateCellView: View {
     
 //    @Binding var isBomb: StateCell
     @Binding var isActive: Bool

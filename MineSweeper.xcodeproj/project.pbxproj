@@ -18,13 +18,17 @@
 		3F3D39B82DECFCFC0049E391 /* PickerModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D39B72DECFCFC0049E391 /* PickerModalView.swift */; };
 		3F3D39BE2DED06180049E391 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D39BD2DED06180049E391 /* GameView.swift */; };
 		3F3D39C02DED063B0049E391 /* GameViewImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D39BF2DED063B0049E391 /* GameViewImpl.swift */; };
+		3F3D39C22DEE28FC0049E391 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D39C12DEE28FC0049E391 /* GameViewModel.swift */; };
+		3F3D39C52DEE2B0E0049E391 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D39C42DEE2B0E0049E391 /* StorageService.swift */; };
 		3FA7EE062DD00ABB000E3217 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7EE052DD00ABB000E3217 /* Coordinator.swift */; };
 		3FA7EE082DD00BAE000E3217 /* PreGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7EE072DD00BAE000E3217 /* PreGameView.swift */; };
 		3FA7EE0A2DD00BC9000E3217 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7EE092DD00BC9000E3217 /* CreateView.swift */; };
 		3FA7EE0C2DD00BD8000E3217 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7EE0B2DD00BD8000E3217 /* MenuView.swift */; };
-		3FA7EE0E2DD23973000E3217 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7EE0D2DD23973000E3217 /* CellView.swift */; };
+		3FA7EE0E2DD23973000E3217 /* CreateCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7EE0D2DD23973000E3217 /* CreateCellView.swift */; };
 		3FA7EE102DD23BA4000E3217 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7EE0F2DD23BA4000E3217 /* GridView.swift */; };
 		3FA7EE122DD2475F000E3217 /* CreateFieldsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7EE112DD2475F000E3217 /* CreateFieldsViewModel.swift */; };
+		3FCED2E52DEE2F6500A5B422 /* GameCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCED2E42DEE2F6500A5B422 /* GameCellView.swift */; };
+		3FCED2E72DEE368100A5B422 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCED2E62DEE368100A5B422 /* GameCell.swift */; };
 		3FD8C6022DBFDEA00042D56A /* MineSweeperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8C6012DBFDEA00042D56A /* MineSweeperApp.swift */; };
 		3FD8C6042DBFDEA00042D56A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8C6032DBFDEA00042D56A /* ContentView.swift */; };
 		3FD8C6062DBFDEA30042D56A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FD8C6052DBFDEA30042D56A /* Assets.xcassets */; };
@@ -46,13 +50,17 @@
 		3F3D39B72DECFCFC0049E391 /* PickerModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModalView.swift; sourceTree = "<group>"; };
 		3F3D39BD2DED06180049E391 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		3F3D39BF2DED063B0049E391 /* GameViewImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewImpl.swift; sourceTree = "<group>"; };
+		3F3D39C12DEE28FC0049E391 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		3F3D39C42DEE2B0E0049E391 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		3FA7EE052DD00ABB000E3217 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		3FA7EE072DD00BAE000E3217 /* PreGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreGameView.swift; sourceTree = "<group>"; };
 		3FA7EE092DD00BC9000E3217 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
 		3FA7EE0B2DD00BD8000E3217 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
-		3FA7EE0D2DD23973000E3217 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		3FA7EE0D2DD23973000E3217 /* CreateCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCellView.swift; sourceTree = "<group>"; };
 		3FA7EE0F2DD23BA4000E3217 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		3FA7EE112DD2475F000E3217 /* CreateFieldsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFieldsViewModel.swift; sourceTree = "<group>"; };
+		3FCED2E42DEE2F6500A5B422 /* GameCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCellView.swift; sourceTree = "<group>"; };
+		3FCED2E62DEE368100A5B422 /* GameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
 		3FD8C5FE2DBFDEA00042D56A /* MineSweeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MineSweeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FD8C6012DBFDEA00042D56A /* MineSweeperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineSweeperApp.swift; sourceTree = "<group>"; };
 		3FD8C6032DBFDEA00042D56A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -116,6 +124,7 @@
 			children = (
 				3F3D39BD2DED06180049E391 /* GameView.swift */,
 				3F3D39BF2DED063B0049E391 /* GameViewImpl.swift */,
+				3FCED2E42DEE2F6500A5B422 /* GameCellView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -123,6 +132,7 @@
 		3F3D39BB2DED05FE0049E391 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				3F3D39C12DEE28FC0049E391 /* GameViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -132,6 +142,14 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		3F3D39C32DEE2A140049E391 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3F3D39C42DEE2B0E0049E391 /* StorageService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		3FA7EDFB2DD009EB000E3217 /* Menu */ = {
@@ -168,7 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				3FA7EE092DD00BC9000E3217 /* CreateView.swift */,
-				3FA7EE0D2DD23973000E3217 /* CellView.swift */,
+				3FA7EE0D2DD23973000E3217 /* CreateCellView.swift */,
 				3FA7EE0F2DD23BA4000E3217 /* GridView.swift */,
 				3F3D39A92DE8A7F10049E391 /* CreateViewImpl.swift */,
 			);
@@ -241,6 +259,7 @@
 		3FD8C6002DBFDEA00042D56A /* MineSweeper */ = {
 			isa = PBXGroup;
 			children = (
+				3F3D39C32DEE2A140049E391 /* Services */,
 				3F3D39A42DE8A4FE0049E391 /* Storage */,
 				3FA7EE042DD00A8C000E3217 /* Navigation */,
 				3FD8C61A2DC16D450042D56A /* GameLogic */,
@@ -334,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				3FD8C61C2DC16D820042D56A /* GameLogicMineSweeper.swift */,
+				3FCED2E62DEE368100A5B422 /* GameCell.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -410,6 +430,7 @@
 			files = (
 				3F3D39B32DECEED50049E391 /* GameMineSweeper.swift in Sources */,
 				3FD8C61D2DC16D820042D56A /* GameLogicMineSweeper.swift in Sources */,
+				3FCED2E52DEE2F6500A5B422 /* GameCellView.swift in Sources */,
 				3FA7EE122DD2475F000E3217 /* CreateFieldsViewModel.swift in Sources */,
 				3F3D39AA2DE8A7F10049E391 /* CreateViewImpl.swift in Sources */,
 				3F3D39C02DED063B0049E391 /* GameViewImpl.swift in Sources */,
@@ -418,13 +439,16 @@
 				3FA7EE0A2DD00BC9000E3217 /* CreateView.swift in Sources */,
 				3FA7EE102DD23BA4000E3217 /* GridView.swift in Sources */,
 				3F3D39B52DECF7550049E391 /* PreGameViewModel.swift in Sources */,
+				3F3D39C52DEE2B0E0049E391 /* StorageService.swift in Sources */,
 				3F3D39AE2DECE6390049E391 /* MockDataStogare.swift in Sources */,
 				3F3D39A82DE8A5D20049E391 /* SingltonStorage.swift in Sources */,
+				3F3D39C22DEE28FC0049E391 /* GameViewModel.swift in Sources */,
 				3FA7EE062DD00ABB000E3217 /* Coordinator.swift in Sources */,
 				3FA7EE0C2DD00BD8000E3217 /* MenuView.swift in Sources */,
 				3FD8C6042DBFDEA00042D56A /* ContentView.swift in Sources */,
-				3FA7EE0E2DD23973000E3217 /* CellView.swift in Sources */,
+				3FA7EE0E2DD23973000E3217 /* CreateCellView.swift in Sources */,
 				3F3D39B82DECFCFC0049E391 /* PickerModalView.swift in Sources */,
+				3FCED2E72DEE368100A5B422 /* GameCell.swift in Sources */,
 				3F3D39BE2DED06180049E391 /* GameView.swift in Sources */,
 				3FD8C6022DBFDEA00042D56A /* MineSweeperApp.swift in Sources */,
 				3FD8C6152DBFEDD30042D56A /* Queue.swift in Sources */,

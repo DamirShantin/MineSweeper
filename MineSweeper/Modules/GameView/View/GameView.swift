@@ -8,11 +8,23 @@
 import SwiftUI
 
 struct GameView: View {
+    
+    @StateObject var vm: GameViewModel
     var body: some View {
-        Text("Пора играть")
+        VStack {
+            Text(vm.selectedField)
+            
+            GridView(rows: vm.rows, columns: vm.columns) { row, col in
+                GameCellView(isActive: $vm.field[row][col].clicked)
+                    .onTapGesture {
+                        vm.click(row: row, column: col)
+                        
+                    }
+            }
+        }
     }
 }
 
-#Preview {
-    GameView()
-}
+//#Preview {
+//    GameView()
+//}

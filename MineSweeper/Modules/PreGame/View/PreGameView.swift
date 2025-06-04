@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PreGameView: View {
-    @StateObject var vm = PreGameViewModel()
+    @StateObject var vm: PreGameViewModel
     
     @State private var selected: String = ""
     @State private var showSaves: Bool = false
@@ -25,11 +25,18 @@ struct PreGameView: View {
             .sheet(isPresented: $showSaves) {
                 PickerModalView(selected: $selected, items: vm.storage.namesOfFields)
             }
+            
+            ScrollView{
+                ForEach(vm.storage.namesOfFields, id: \.self) { item in
+                Text(item)
+                }
+            }
         
 //            Text(selected)
             
             Spacer()
             Button("Начать игру") {
+                vm.storage.selectedField = selected
                 Coordinator.shared.next(.game)
             }
             .padding()
@@ -44,5 +51,7 @@ struct PreGameView: View {
 }
 
 #Preview {
-    PreGameView()
+    var storage = MockDataStogare()
+    @StateObject var vm = PreGameViewModel(storage: storage)
+    return PreGameView(vm: vm)
 }

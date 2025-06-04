@@ -13,11 +13,11 @@ struct MockDataStogare: StorageModel{
 //    [0,0,]
 //    ]
     
-    func saveData(name: String, field: [[Int]]) {
+    func saveData(name: String, field: [[GameCell]]) {
         //
     }
     
-    func fetchData(name: String) -> [[Int]]? {
+    func fetchData(name: String) -> [[GameCell]]? {
         return [[]]
     }
     
@@ -26,6 +26,7 @@ struct MockDataStogare: StorageModel{
     }
     
     var namesOfFields: [String] = ["Test1", "Test2"]
+    var selectedField: String?
     
     
 }

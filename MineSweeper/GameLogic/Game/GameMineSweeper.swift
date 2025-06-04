@@ -11,16 +11,27 @@ class GameMineSweeper: GameProtocol {
     
     var storage: StorageModel
     var gameLogic: GameLogicMineSweeper
-    var nameOfSave: String = ""
     
     init(storage: StorageModel, gameLogic: GameLogicMineSweeper) {
         self.storage = storage
         self.gameLogic = gameLogic
+        start()
+    }
+    // конфликт наблюдателя и инита
+    
+    var field: [[GameCell]]{
+        get {
+            return curentField
+        }
     }
     
+    var curentField = [[GameCell]]()
+    
     func start() {
-        guard let field = storage.fetchData(name: nameOfSave) else { return }
-        gameLogic.field = field
+        guard let name = storage.selectedField else { return }
+        guard let field = storage.fetchData(name: name) else { return }
+        self.curentField = field
+//        gameLogic.field = field
     }
     
     func end() {
@@ -29,6 +40,18 @@ class GameMineSweeper: GameProtocol {
     
     func pause() {
         //
+    }
+    
+    // поле есть
+    func click(row: Int, column: Int)  {
+//        guard let field else { return }
+        let newField = gameLogic.click(field: field, givenI: row, givenJ: column)
+        
+        newField.map { array in
+            print(array)
+        }
+        self.curentField = newField
+//        self.gameLogic.field = newField
     }
     
     

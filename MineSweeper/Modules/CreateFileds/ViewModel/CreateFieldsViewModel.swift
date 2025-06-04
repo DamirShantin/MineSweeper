@@ -40,7 +40,7 @@ class CreateFieldsViewModel: ObservableObject {
     }
     
     func clearField(){
-        self.game.field = [[Int]]()
+        self.game.field = [[GameCell]]()
         self.game.bombs = [[Int]]()
     }
     

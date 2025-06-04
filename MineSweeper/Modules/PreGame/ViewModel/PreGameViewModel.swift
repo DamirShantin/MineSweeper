@@ -9,7 +9,9 @@ import Foundation
 
 class PreGameViewModel: ObservableObject{
     
-    var storage: StorageModel = MockDataStogare()
+    var storage: StorageModel
     
-    
+    init(storage: StorageModel) {
+        self.storage = storage
+    }
 }

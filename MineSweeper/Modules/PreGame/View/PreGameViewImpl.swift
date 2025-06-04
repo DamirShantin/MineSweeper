@@ -9,8 +9,13 @@ import Foundation
 import SwiftUI
 
 struct PreGameViewImpl: View {
-    var storage = SingltonStorage.shared
-    var vm = PreGameViewModel()
+//    var storage: StorageModel = MockDataStogare()
+    var vm: PreGameViewModel = {
+        var storage: StorageModel = StorageService.shared.storage
+        var vm = PreGameViewModel(storage: storage)
+        return vm
+    }()
+    
     var body: some View {
         PreGameView(vm: vm)
     }

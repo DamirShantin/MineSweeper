@@ -64,7 +64,7 @@ struct CreateView: View {
             Spacer()
             
             GridView(rows: vm.rows, columns: vm.columns) { row, col in
-                CellView(isActive: $vm.field[row][col])
+                CreateCellView(isActive: $vm.field[row][col])
                     .onTapGesture {
                         vm.field[row][col].toggle()
                     }

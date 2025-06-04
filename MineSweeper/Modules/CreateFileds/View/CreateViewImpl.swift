@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 struct CreateViewImpl: View {
-    @StateObject var vm = CreateFieldsViewModel()
-    var storage = SingltonStorage.shared
+    var vm = CreateFieldsViewModel()
+    var storage = StorageService.shared.storage
     
     var body: some View {
-        CreateView(vm: vm as CreateFieldsViewModel, storage: storage as StorageModel)
+        CreateView(vm: vm, storage: storage)
     }
 }
