@@ -53,7 +53,8 @@ class GameLogicMineSweeper: GameLogicMineSweeperProtocol {
             
             queue.enqueue(element: [givenI, givenJ])
         } else {
-            return [[]]
+            newField[givenI][givenJ].clicked = true
+            return newField
         }
         while !queue.isEmpty {
             let position = queue.dequeue()
