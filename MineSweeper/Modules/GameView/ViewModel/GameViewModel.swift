@@ -41,12 +41,17 @@ class GameViewModel: ObservableObject {
     func click(row: Int, column: Int) {
         self.game.click(row: row, column: column)
         updateField()
-        print("\(row) X \(column)")
-        print(game.field[row][column].clicked ? "+" : "-")
-        game.field.map { array in
-            print(array)
-        }
+//        print("\(row) X \(column)")
+//        print(game.field[row][column].clicked ? "+" : "-")
+//        game.field.map { array in
+//            print(array)
+//        }
         
+    }
+    
+    func marked(row: Int, column: Int) {
+        self.game.makred(row: row, column: column)
+        updateField()
     }
     
     lazy var storage: StorageModel = {

@@ -86,6 +86,7 @@ struct CreateView: View {
                 TextField("Название", text: $nameOfField)
                 Button("Ок") {
                     self.storage.saveData(name: nameOfField, field: vm.game.field)
+                    self.storage.saveBombs(name: nameOfField, bombs: vm.game.bombs)
                     self.nameOfField = ""
                     vm.clearField()
                 }

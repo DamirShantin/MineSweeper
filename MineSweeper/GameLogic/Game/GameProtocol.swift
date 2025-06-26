@@ -11,4 +11,10 @@ protocol GameProtocol {
     func start()
     func end()
     func pause()
+    func checkStatus()
+//    var gameStatus: GameStatus {get set}
 }
+
+//extension GameProtocol{
+//    var gameStatus = .game
+//}

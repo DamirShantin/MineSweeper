@@ -15,7 +15,7 @@ struct PreGameView: View {
     var body: some View {
         VStack {
             Spacer()
-            Button ("Выбирете поле") {
+            Button ("Выберите поле") {
                 self.showSaves = true
                 if selected == "" {
                     self.selected = vm.storage.namesOfFields.first ?? ""

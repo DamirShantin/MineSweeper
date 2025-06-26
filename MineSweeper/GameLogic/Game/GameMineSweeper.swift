@@ -17,7 +17,7 @@ class GameMineSweeper: GameProtocol {
         self.gameLogic = gameLogic
         start()
     }
-    // конфликт наблюдателя и инита
+
     
     var field: [[GameCell]]{
         get {
@@ -25,34 +25,70 @@ class GameMineSweeper: GameProtocol {
         }
     }
     
+//    var bombs: [CoordField] {
+//        get {
+//            return curentBombs
+//        }
+//    }
+    
     var curentField = [[GameCell]]()
+    
+//    var curentBombs = [CoordField]()
+    
+    var gameStatus: GameStatus {
+        get {
+            gameLogic.gameStatus
+        }
+    }
     
     func start() {
         guard let name = storage.selectedField else { return }
         guard let field = storage.fetchData(name: name) else { return }
+        guard let bombs = storage.fetchBombs(name: name) else { return }
         self.curentField = field
-//        gameLogic.field = field
+//        self.curentBombs = bombs
+        self.gameLogic.bombs = bombs
     }
     
     func end() {
-        //
+        switch gameStatus {
+        case .game:
+            break
+        case .win:
+            print("==================")
+            print("You win")
+            print("==================")
+        case .lose:
+            print("==================")
+            print("You lose")
+            print("==================")
+        case .pause:
+            break
+        }
     }
     
     func pause() {
         //
     }
     
-    // поле есть
-    func click(row: Int, column: Int)  {
-//        guard let field else { return }
-        let newField = gameLogic.click(field: field, givenI: row, givenJ: column)
-        
-        newField.map { array in
-            print(array)
+    func checkStatus() {
+        if gameStatus != .game{
+            end()
         }
-        self.curentField = newField
-//        self.gameLogic.field = newField
     }
     
+    func click(row: Int, column: Int)  {
+        let newField = gameLogic.click(field: field, givenI: row, givenJ: column)
+        self.curentField = newField
+        checkStatus()
+    }
+    
+    func makred(row: Int, column: Int){
+        let newField = gameLogic.marked(field: field, givenI: row, givenJ: column)
+        self.curentField = newField
+        checkStatus()
+    }
+    
+//     
     
 }

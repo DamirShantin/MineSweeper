@@ -11,15 +11,15 @@ import SwiftUI
 struct GameViewImpl: View {
     
     var game: GameMineSweeper {
-        var gameLogic = GameLogicMineSweeper()
-        var storage = SingltonStorage.shared
+        let gameLogic = GameLogicMineSweeper()
+        let storage = SingltonStorage.shared
         let game = GameMineSweeper(storage: storage, gameLogic: gameLogic)
         return game
     }
     
     var vm: GameViewModel{
-        var game = self.game
-        var vm = GameViewModel(game: game)
+        let game = self.game
+        let vm = GameViewModel(game: game)
         return vm
     }
     

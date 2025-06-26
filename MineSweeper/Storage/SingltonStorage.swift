@@ -8,10 +8,13 @@
 import Foundation
 
 final class SingltonStorage: StorageModel {
+   
+    
     
     static var shared = SingltonStorage()
     
     var storage = [String : [[GameCell]]]()
+    var storageBombs = [String : [CoordField]]()
     var namesOfFields = [String]()
     var selectedField: String?
     
@@ -29,5 +32,16 @@ final class SingltonStorage: StorageModel {
     
     func loadData() {
         //
+    }
+    
+    func saveBombs(name: String, bombs: [CoordField]) {
+        storageBombs[name] = bombs
+    }
+    
+    func fetchBombs(name: String) -> [CoordField]? {
+        if let data = storageBombs[name] {
+            return data
+        }
+        return nil
     }
 }

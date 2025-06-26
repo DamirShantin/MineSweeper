@@ -33,7 +33,7 @@ class CreateFieldsViewModel: ObservableObject {
         for i in 0 ... rows - 1 {
             for j in 0 ... columns - 1 {
                 if field[i][j] == false {
-                    self.game.bombs.append([i,j])
+                    self.game.bombs.append(CoordField(x: i, y: j))
                 }
             }
         }
@@ -41,7 +41,7 @@ class CreateFieldsViewModel: ObservableObject {
     
     func clearField(){
         self.game.field = [[GameCell]]()
-        self.game.bombs = [[Int]]()
+        self.game.bombs = [CoordField]()
     }
     
     func createMineSweeperField() {
