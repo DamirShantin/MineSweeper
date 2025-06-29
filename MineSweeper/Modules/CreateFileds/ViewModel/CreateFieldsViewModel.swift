@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CreateFieldsViewModel: ObservableObject {
+class CreateFieldsViewModel: ObservableObject, FieldValidationProtocol {
     @Published var field = [[Bool]]()
     
     var game = GameLogicMineSweeper()
@@ -45,5 +45,22 @@ class CreateFieldsViewModel: ObservableObject {
     func createMineSweeperField() {
         game.createMineSweeper(bombs: game.bombs, rows: rows, columns: columns)
         
+    }
+    
+    func createNameField(name: String) -> String {
+        return "\(self.rows) x \(self.columns) " + name
+    }
+    
+    func isValid() -> Bool {
+        let notViledFieldOne = Array(repeating: Array(repeating: true, count: self.columns), count: rows)
+        let notViledFieldTwo = Array(repeating: Array(repeating: false, count: self.columns), count: rows)
+        switch self.field{
+        case notViledFieldOne:
+            return false
+        case notViledFieldTwo:
+            return false
+        default:
+            return true
+        }
     }
 }

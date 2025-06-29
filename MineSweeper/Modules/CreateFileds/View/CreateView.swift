@@ -82,11 +82,13 @@ struct CreateView: View {
             }
             .buttonStyle(.bordered)
             .foregroundStyle(.black)
+            .disabled(!vm.isValid())
             .alert("Введите название", isPresented: $showAlert) {
                 TextField("Название", text: $nameOfField)
                 Button("Ок") {
-                    self.storage.saveData(name: nameOfField, field: vm.game.field)
-                    self.storage.saveBombs(name: nameOfField, bombs: vm.game.bombs)
+                    let name = vm.createNameField(name: nameOfField)
+                    self.storage.saveData(name: name, field: vm.game.field)
+                    self.storage.saveBombs(name: name, bombs: vm.game.bombs)
                     self.nameOfField = ""
                     vm.clearField()
                 }

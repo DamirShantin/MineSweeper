@@ -31,6 +31,7 @@
 		3FCED2E72DEE368100A5B422 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCED2E62DEE368100A5B422 /* GameCell.swift */; };
 		3FCED2E92E0DAD0C00A5B422 /* CoordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCED2E82E0DAD0C00A5B422 /* CoordField.swift */; };
 		3FCED2EB2E0DB00F00A5B422 /* GameStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCED2EA2E0DB00F00A5B422 /* GameStatus.swift */; };
+		3FCED2EE2E11736200A5B422 /* FieldValidationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCED2ED2E11736100A5B422 /* FieldValidationProtocol.swift */; };
 		3FD8C6022DBFDEA00042D56A /* MineSweeperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8C6012DBFDEA00042D56A /* MineSweeperApp.swift */; };
 		3FD8C6042DBFDEA00042D56A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8C6032DBFDEA00042D56A /* ContentView.swift */; };
 		3FD8C6062DBFDEA30042D56A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FD8C6052DBFDEA30042D56A /* Assets.xcassets */; };
@@ -65,6 +66,7 @@
 		3FCED2E62DEE368100A5B422 /* GameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
 		3FCED2E82E0DAD0C00A5B422 /* CoordField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordField.swift; sourceTree = "<group>"; };
 		3FCED2EA2E0DB00F00A5B422 /* GameStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatus.swift; sourceTree = "<group>"; };
+		3FCED2ED2E11736100A5B422 /* FieldValidationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldValidationProtocol.swift; sourceTree = "<group>"; };
 		3FD8C5FE2DBFDEA00042D56A /* MineSweeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MineSweeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FD8C6012DBFDEA00042D56A /* MineSweeperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineSweeperApp.swift; sourceTree = "<group>"; };
 		3FD8C6032DBFDEA00042D56A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 		3FA7EDFC2DD00A27000E3217 /* CreateFileds */ = {
 			isa = PBXGroup;
 			children = (
+				3FCED2EC2E11734200A5B422 /* Validation */,
 				3FA7EE002DD00A64000E3217 /* ViewModel */,
 				3FA7EDFF2DD00A5C000E3217 /* Model */,
 				3FA7EDFE2DD00A53000E3217 /* View */,
@@ -243,6 +246,14 @@
 				3FA7EE052DD00ABB000E3217 /* Coordinator.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		3FCED2EC2E11734200A5B422 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				3FCED2ED2E11736100A5B422 /* FieldValidationProtocol.swift */,
+			);
+			path = Validation;
 			sourceTree = "<group>";
 		};
 		3FD8C5F52DBFDEA00042D56A = {
@@ -437,6 +448,7 @@
 				3F3D39B32DECEED50049E391 /* GameMineSweeper.swift in Sources */,
 				3FD8C61D2DC16D820042D56A /* GameLogicMineSweeper.swift in Sources */,
 				3FCED2E52DEE2F6500A5B422 /* GameCellView.swift in Sources */,
+				3FCED2EE2E11736200A5B422 /* FieldValidationProtocol.swift in Sources */,
 				3FA7EE122DD2475F000E3217 /* CreateFieldsViewModel.swift in Sources */,
 				3F3D39AA2DE8A7F10049E391 /* CreateViewImpl.swift in Sources */,
 				3F3D39C02DED063B0049E391 /* GameViewImpl.swift in Sources */,
