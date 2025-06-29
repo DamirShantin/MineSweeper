@@ -35,4 +35,12 @@ final class Coordinator: ObservableObject {
         }
     }
     
+    func back(){
+        Task{
+            await MainActor.run {
+                path.removeLast()
+            }
+        }
+    }
+    
 }

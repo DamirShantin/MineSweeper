@@ -10,48 +10,12 @@ import Foundation
 class GameViewModel: ObservableObject {
     @Published var field = [[GameCell]]()
     
-    var game : GameMineSweeper 
-//    {
-//        let storage = StorageService.shared.storage
-//        let gameLogic = GameLogicMineSweeper()
-//        let game = GameMineSweeper(storage: storage, gameLogic: gameLogic)
-//        return game
-//    }
+    var game : GameMineSweeper
     
     init(game: GameMineSweeper) {
         self.game = game
         start()
 
-    }
-    
-//    init(){
-//        start()
-//    }
-    
-    func start() {
-        let field = self.game.field
-        self.field = field
-    }
-    
-    func updateField(){
-        let newfield = self.game.field
-        self.field = newfield
-    }
-    
-    func click(row: Int, column: Int) {
-        self.game.click(row: row, column: column)
-        updateField()
-//        print("\(row) X \(column)")
-//        print(game.field[row][column].clicked ? "+" : "-")
-//        game.field.map { array in
-//            print(array)
-//        }
-        
-    }
-    
-    func marked(row: Int, column: Int) {
-        self.game.makred(row: row, column: column)
-        updateField()
     }
     
     lazy var storage: StorageModel = {
@@ -72,6 +36,41 @@ class GameViewModel: ObservableObject {
         let columns = storage.fetchData(name: selectedField)?.first?.count
         return columns ?? 0
     }()
+    
+    var alertLabel: String {
+        switch game.gameStatus {
+        case .game:
+            return ""
+        case .win:
+            return "You win!!"
+        case .lose:
+            return "You lose ;("
+        case .pause:
+            return "Pause"
+        }
+    }
+    
+    func start() {
+        let field = self.game.field
+        self.field = field
+    }
+    
+    func updateField(){
+        let newfield = self.game.field
+        self.field = newfield
+    }
+    
+    func click(row: Int, column: Int) {
+        self.game.click(row: row, column: column)
+        updateField()
+    }
+    
+    func marked(row: Int, column: Int) {
+        self.game.makred(row: row, column: column)
+        updateField()
+    }
+    
+    
     
     
 }

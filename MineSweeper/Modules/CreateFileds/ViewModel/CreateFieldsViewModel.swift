@@ -16,7 +16,6 @@ class CreateFieldsViewModel: ObservableObject {
     var columns: Int
     
     init(){
-        print("init create")
         self.rows = 10
         self.columns = 10
         createField()
@@ -26,7 +25,6 @@ class CreateFieldsViewModel: ObservableObject {
     func createField() {
         let grid = Array(repeating: Array(repeating: true, count: self.columns), count: rows)
         self.field = grid
-        print("\(rows) X \(columns)")
     }
     
     func createBomb() {
