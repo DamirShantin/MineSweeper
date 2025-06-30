@@ -18,7 +18,7 @@ final class CoreDataStorage: StorageModel{
     
     var namesOfFields =  [String]()
     var selectedField: String?
-    private var fields = [ModelField_]()
+    private var fields : [ModelField_] = []
     
     //MARK: Container
     lazy var persistentContainer: NSPersistentContainer = {
@@ -59,21 +59,18 @@ final class CoreDataStorage: StorageModel{
         }
         
         loadData()
+        saveContext()
     }
     
     func fetchData(name: String) -> Field? {
-        let req = ModelField_.fetchRequest()
-        var curentField = ModelField_()
-        if let fields = try? persistentContainer.viewContext.fetch(req) {
-            for item in fields {
-                if name == item.name_{
-                    curentField = item
-                } else {
-                    return nil
-                }
+        var field: ModelField_?
+        fields.map { item in
+            if name == item.name_{
+                field = item
             }
         }
-        return convert(curentField)
+        guard field != nil else { return nil }
+        return convert(field!)
     }
     
     func convert(_ field: ModelField_) -> Field {
