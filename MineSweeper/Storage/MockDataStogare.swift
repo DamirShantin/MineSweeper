@@ -8,24 +8,18 @@
 import Foundation
 
 struct MockDataStogare: StorageModel{
-    func saveBombs(name: String, bombs: [CoordField]) {
-        
+    func saveData(name: String, row: Int, col: Int, bombs: [CoordField]) {
+        //
+    }
+    
+    func fetchData(name: String) -> Field? {
+        return Field(name: "", rows: 1, columns: 1, bombs: [])
     }
     
     func fetchBombs(name: String) -> [CoordField]? {
         return [CoordField]()
     }
-    
-    
 
-    
-    func saveData(name: String, field: [[GameCell]]) {
-        //
-    }
-    
-    func fetchData(name: String) -> [[GameCell]]? {
-        return [[]]
-    }
     
     func loadData() {
         //

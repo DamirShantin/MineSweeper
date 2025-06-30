@@ -8,10 +8,8 @@
 import Foundation
 
 protocol StorageModel{
-    func saveData(name: String, field: [[GameCell]])
-    func saveBombs(name: String, bombs: [CoordField])
-    func fetchData(name: String) -> [[GameCell]]?
-    func fetchBombs(name: String) -> [CoordField]?
+    func saveData(name: String, row: Int, col: Int, bombs: [CoordField])
+    func fetchData(name: String) -> Field?
     func loadData()
     
     var namesOfFields: [String] { get set }

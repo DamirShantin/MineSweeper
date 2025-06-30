@@ -12,7 +12,7 @@ struct GameViewImpl: View {
     
     var game: GameMineSweeper {
         let gameLogic = GameLogicMineSweeper()
-        let storage = SingltonStorage.shared
+        let storage = StorageService.shared.storage
         let game = GameMineSweeper(storage: storage, gameLogic: gameLogic)
         return game
     }

@@ -9,21 +9,21 @@ import Foundation
 
 final class SingltonStorage: StorageModel {
    
-    
-    
     static var shared = SingltonStorage()
+    private init() {}
     
-    var storage = [String : [[GameCell]]]()
+    var storage = [String : Field]()
     var storageBombs = [String : [CoordField]]()
     var namesOfFields = [String]()
     var selectedField: String?
     
-    func saveData(name: String, field: [[GameCell]]) {
+    func saveData(name: String, row: Int, col: Int, bombs: [CoordField]) {
+        let field = Field(name: name, rows: row, columns: col, bombs: bombs)
         storage[name] = field
         namesOfFields.append(name)
     }
     
-    func fetchData(name: String) -> [[GameCell]]? {
+    func fetchData(name: String) -> Field? {
         if let data = storage[name] {
             return data
         }
@@ -34,14 +34,4 @@ final class SingltonStorage: StorageModel {
         //
     }
     
-    func saveBombs(name: String, bombs: [CoordField]) {
-        storageBombs[name] = bombs
-    }
-    
-    func fetchBombs(name: String) -> [CoordField]? {
-        if let data = storageBombs[name] {
-            return data
-        }
-        return nil
-    }
 }

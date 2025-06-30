@@ -16,8 +16,8 @@ class CreateFieldsViewModel: ObservableObject, FieldValidationProtocol {
     var columns: Int
     
     init(){
-        self.rows = 10
-        self.columns = 10
+        self.rows = 4
+        self.columns = 4
         createField()
         
     }

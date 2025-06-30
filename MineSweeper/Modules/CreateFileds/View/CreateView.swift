@@ -11,8 +11,8 @@ struct CreateView: View {
     @StateObject var vm : CreateFieldsViewModel
     var storage: StorageModel
     
-    @State private var selectedRows: Int = 10
-    @State private var selectedColumns: Int = 10
+    @State private var selectedRows: Int = 4
+    @State private var selectedColumns: Int = 4
     @State var showAlert: Bool  = false
     @State var nameOfField: String = ""
     
@@ -75,10 +75,7 @@ struct CreateView: View {
             Spacer()
             
             Button ("Создать поле") {
-                vm.clearField()
-                vm.createBomb()
-                vm.createMineSweeperField()
-                showAlert = true
+                buttonCreateField()
             }
             .buttonStyle(.bordered)
             .foregroundStyle(.black)
@@ -86,17 +83,28 @@ struct CreateView: View {
             .alert("Введите название", isPresented: $showAlert) {
                 TextField("Название", text: $nameOfField)
                 Button("Ок") {
-                    let name = vm.createNameField(name: nameOfField)
-                    self.storage.saveData(name: name, field: vm.game.field)
-                    self.storage.saveBombs(name: name, bombs: vm.game.bombs)
-                    self.nameOfField = ""
-                    vm.clearField()
+                    buttonAlertOk(nameOfField)
                 }
             }
             
             Spacer()
             
         }
+    }
+    
+    func buttonCreateField() {
+        vm.clearField()
+        vm.createBomb()
+        vm.createMineSweeperField()
+        showAlert = true
+    }
+    
+    func buttonAlertOk(_ nameOfField: String){
+        let name = vm.createNameField(name: nameOfField)
+        self.storage.saveData(name: name, row: selectedRows, col: selectedColumns, bombs: vm.game.bombs)
+//        self.storage.saveBombs(name: name, bombs: vm.game.bombs)
+        self.nameOfField = ""
+        vm.clearField()
     }
 }
 

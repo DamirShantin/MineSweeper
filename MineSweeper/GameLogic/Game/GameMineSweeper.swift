@@ -44,10 +44,10 @@ class GameMineSweeper: GameProtocol {
     func start() {
         guard let name = storage.selectedField else { return }
         guard let field = storage.fetchData(name: name) else { return }
-        guard let bombs = storage.fetchBombs(name: name) else { return }
-        self.curentField = field
+        gameLogic.createMineSweeper(bombs: field.bombs, rows: field.rows, columns: field.columns)
+        self.curentField = gameLogic.field
 //        self.curentBombs = bombs
-        self.gameLogic.bombs = bombs
+        self.gameLogic.bombs = field.bombs
     }
     
     func end() {

@@ -28,13 +28,13 @@ class GameViewModel: ObservableObject {
     }()
     
     lazy var rows: Int = {
-        let rows = storage.fetchData(name: selectedField)?.count
-        return rows ?? 0
+        let field = storage.fetchData(name: selectedField)
+        return field?.rows ?? 0
     }()
     
     lazy var columns: Int = {
-        let columns = storage.fetchData(name: selectedField)?.first?.count
-        return columns ?? 0
+        let field = storage.fetchData(name: selectedField)
+        return field?.columns ?? 0
     }()
     
     var alertLabel: String {

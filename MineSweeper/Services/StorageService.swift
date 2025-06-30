@@ -11,7 +11,7 @@ final class StorageService {
     static var shared = StorageService()
     
     var storage: StorageModel {
-        return SingltonStorage.shared
+        return CoreDataStorage.shared
     }
     
 }

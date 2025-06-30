@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct MineSweeperApp: App {
+    @Environment(\.scenePhase) var scenePhase
+    let persistenceController = CoreDataStorage.shared
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, persistenceController.persistentContainer.viewContext)
+        }
+        .onChange(of: scenePhase) {
+            persistenceController.saveContext()
         }
     }
 }
