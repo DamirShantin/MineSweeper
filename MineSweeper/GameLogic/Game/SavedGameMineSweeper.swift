@@ -2,25 +2,30 @@
 //  GameMineSweeper.swift
 //  MineSweeper
 //
-//  Created by Дамир Шаймуханбетов on 23.10.2025.
+//  Created by Дамир Шаймуханбетов on 01.06.2025.
 //
 
 import Foundation
 
-final class GameMineSweeper: GameProtocol {
+class SavedGameMineSweeper: GameProtocol {
     
-    let gameLogic: GameLogicMineSweeperProtocol
     
-    init(gameLogic: GameLogicMineSweeperProtocol) {
+    var storage: StorageModel
+    var gameLogic: GameLogicMineSweeperProtocol
+    
+    init(storage: StorageModel, gameLogic: GameLogicMineSweeperProtocol) {
+        self.storage = storage
         self.gameLogic = gameLogic
         start()
     }
+
     
     var field: [[GameCell]]{
         get {
             return curentField
         }
     }
+    
     var curentField = [[GameCell]]()
     
     var gameStatus: GameStatus {
@@ -29,21 +34,13 @@ final class GameMineSweeper: GameProtocol {
         }
     }
     
-    var rows: Int {
-        get {
-            Coordinator.shared.demention!.x
-        }
-    }
-    
-    var columns: Int {
-        get {
-            Coordinator.shared.demention!.y
-        }
-    }
-    
     func start() {
-        let newField = gameLogic.createMineSweeper(bombs: [], rows: rows, columns: columns)
-        curentField = newField
+        guard let name = storage.selectedField else { return }
+        guard let field = storage.fetchData(name: name) else { return }
+        let newField = gameLogic.createMineSweeper(bombs: field.bombs, rows: field.rows, columns: field.columns)
+        self.curentField = newField
+//        self.curentBombs = bombs
+        self.gameLogic.bombs = field.bombs
     }
     
     func end() {
@@ -86,5 +83,7 @@ final class GameMineSweeper: GameProtocol {
         self.curentField = newField
         checkStatus()
     }
+    
+//     
     
 }

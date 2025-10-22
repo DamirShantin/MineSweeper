@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct GameView: View {
+struct SavedGameView: View {
     
-    @StateObject var vm: GameViewModel
+    @StateObject var vm: SavedGameViewModel
     @State private var alertPresented: Bool = false
     var body: some View {
         ZStack {
@@ -39,7 +39,7 @@ struct GameView: View {
                         )
                         .disabled(vm.field[row][col].clicked || vm.field[row][col].marked)
                 }
-                .disabled(vm.game.gameStatus == .game ? false : true)
+                .disabled((vm.game.gameStatus == .game || vm.game.gameStatus == .start) ? false : true)
             }
             .alert(vm.alertLabel, isPresented: $alertPresented) {
                 Button("Ok"){

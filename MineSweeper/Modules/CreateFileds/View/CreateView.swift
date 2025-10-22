@@ -37,6 +37,7 @@ struct CreateView: View {
                     withAnimation {
                         vm.rows = newValue
                         vm.createField()
+                        vm.numberOfBombsInField() // test
                     }
                 }
                 
@@ -55,12 +56,17 @@ struct CreateView: View {
                     withAnimation {
                         vm.columns = newValue
                         vm.createField()
+                        vm.numberOfBombsInField() // test
                     }
                 }
                 
             }
             .frame(maxHeight: 200)
 
+            Spacer()
+            Text("\(vm.countBombs)")
+                .bold()
+                .foregroundStyle(.blue)
             Spacer()
             
             GridView(rows: vm.rows, columns: vm.columns) { row, col in
@@ -95,7 +101,7 @@ struct CreateView: View {
     func buttonCreateField() {
         vm.clearField()
         vm.createBomb()
-        vm.createMineSweeperField()
+//        vm.createMineSweeperField()
         showAlert = true
     }
     

@@ -8,5 +8,5 @@
 import Foundation
 
 enum GameStatus {
-    case game, win, lose, pause
+    case start, game, win, lose, pause
 }

@@ -6,25 +6,15 @@
 //
 
 import Foundation
-protocol GameLogicMineSweeperProtocol {
-    var field: [[GameCell]] {get set}
-    var bombs: [CoordField] {get set}
-    var checkBombs: [CoordField] {get set}
-    var gameStatus: GameStatus {get set}
-    
-    func createMineSweeper(bombs: [CoordField], rows: Int, columns: Int)
-    func click(field: [[GameCell]], givenI: Int, givenJ: Int) -> [[GameCell]]
-}
-
-class GameLogicMineSweeper: GameLogicMineSweeperProtocol {
+final class SavedGameLogicMineSweeper: GameLogicMineSweeperProtocol {
     
     var field = [[GameCell]]()
     var bombs = [CoordField]()
     var checkBombs = [CoordField]()
-    var gameStatus: GameStatus = .game
+    var gameStatus: GameStatus = .start
     
     
-    func createMineSweeper(bombs: [CoordField], rows: Int, columns: Int) {
+    func createMineSweeper(bombs: [CoordField], rows: Int, columns: Int) -> [[GameCell]] {
         var field = Array(repeating: Array(repeating: GameCell(value: 0), count: columns), count: rows)
         
         for bomb in bombs {
@@ -40,7 +30,7 @@ class GameLogicMineSweeper: GameLogicMineSweeperProtocol {
             }
         }
         
-        self.field = field
+        return field
     }
     
     func click(field: [[GameCell]], givenI: Int, givenJ: Int) -> [[GameCell]]  {
@@ -48,6 +38,10 @@ class GameLogicMineSweeper: GameLogicMineSweeperProtocol {
         var newField = field
         let rows = newField.count
         let columns = newField.first?.count
+        
+        if gameStatus == .start {
+            gameStatus = .game
+        }
         
         if newField[givenI][givenJ].value == -1 {
             self.gameStatus = .lose
@@ -72,16 +66,11 @@ class GameLogicMineSweeper: GameLogicMineSweeperProtocol {
                             newField[i][j].value = -2
                             queue.enqueue(element: [i,j])
                         }
-                        
                     }
                 }
             }
         }
-        
-        
-        
         return newField
-
     }
     
     func marked(field: [[GameCell]], givenI: Int, givenJ: Int) -> [[GameCell]] {
@@ -97,8 +86,5 @@ class GameLogicMineSweeper: GameLogicMineSweeperProtocol {
         }
         return newField
     }
-    
-    
-    
 }
 

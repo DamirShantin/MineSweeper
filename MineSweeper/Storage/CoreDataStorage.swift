@@ -9,9 +9,8 @@ import Foundation
 import CoreData
 
 final class CoreDataStorage: StorageModel{
-    
-    
     static var shared: CoreDataStorage = CoreDataStorage()
+    
     private init() {
         loadData()
     }
@@ -57,14 +56,13 @@ final class CoreDataStorage: StorageModel{
             coordField.y_ = Int16(bomb.y)
             coordField.field_ = model
         }
-        
         loadData()
         saveContext()
     }
     
     func fetchData(name: String) -> Field? {
         var field: ModelField_?
-        fields.map { item in
+        let _ = fields.map { item in
             if name == item.name_{
                 field = item
             }
@@ -81,7 +79,7 @@ final class CoreDataStorage: StorageModel{
         
         let req = CoordField_.fetchRequest()
         if let bombs_ = try? persistentContainer.viewContext.fetch(req) {
-            bombs_.map {
+            let _ = bombs_.map {
                 if $0.field_ == field {
                     let bomb = $0.convert()
                     bombs.append(bomb)
@@ -96,14 +94,11 @@ final class CoreDataStorage: StorageModel{
         var names = [String]()
         if let fields = try? persistentContainer.viewContext.fetch(req) {
             self.fields = fields
-            fields.map {
+            let _ = fields.map {
                 let name = $0.name_
                 names.append(name)
             }
             self.namesOfFields = names
         }
     }
-    
-    
-    
 }

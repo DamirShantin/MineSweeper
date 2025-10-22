@@ -1,17 +1,28 @@
 //
-//  GameViewModel.swift
+//  PreGameViewModel.swift
 //  MineSweeper
 //
-//  Created by Дамир Шаймуханбетов on 02.06.2025.
+//  Created by Дамир Шаймуханбетов on 23.10.2025.
 //
 
 import Foundation
 
-class PreGameViewModel: ObservableObject{
+final class PreGameViewModel: ObservableObject {
     
-    var storage: StorageModel
+    var rows: Int = 4
+    var columns: Int = 4
     
-    init(storage: StorageModel) {
-        self.storage = storage
+    var minesCount: Int = 0
+    
+    func countMines() {
+        let countService = MineCountService()
+        minesCount = countService.createNumbersOfBombs(rows: rows, columns: columns)
+        
+    }
+    
+    func startGame() {
+        let demention = CoordField(x: rows, y: columns)
+        Coordinator.shared.demention = demention
+        Coordinator.shared.next(.game)
     }
 }

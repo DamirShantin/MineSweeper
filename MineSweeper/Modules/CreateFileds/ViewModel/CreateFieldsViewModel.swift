@@ -9,8 +9,10 @@ import Foundation
 
 class CreateFieldsViewModel: ObservableObject, FieldValidationProtocol {
     @Published var field = [[Bool]]()
+    @Published var countBombs: Int = 0 // test
     
-    var game = GameLogicMineSweeper()
+    var game = SavedGameLogicMineSweeper()
+    var numberOfBombs = MineCountService() // test
     
     var rows: Int
     var columns: Int
@@ -20,6 +22,11 @@ class CreateFieldsViewModel: ObservableObject, FieldValidationProtocol {
         self.columns = 4
         createField()
         
+    }
+    
+    func numberOfBombsInField() { // test
+        let count = numberOfBombs.createNumbersOfBombs(rows: rows, columns: columns)
+            countBombs = count  
     }
     
     func createField() {
@@ -42,10 +49,10 @@ class CreateFieldsViewModel: ObservableObject, FieldValidationProtocol {
         self.game.bombs = [CoordField]()
     }
     
-    func createMineSweeperField() {
-        game.createMineSweeper(bombs: game.bombs, rows: rows, columns: columns)
-        
-    }
+//    func createMineSweeperField() {
+//        game.createMineSweeper(bombs: game.bombs, rows: rows, columns: columns)
+//        
+//    }
     
     func createNameField(name: String) -> String {
         return "\(self.rows) x \(self.columns) " + name

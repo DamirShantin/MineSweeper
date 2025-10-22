@@ -2,13 +2,24 @@
 //  GameViewModel.swift
 //  MineSweeper
 //
-//  Created by Дамир Шаймуханбетов on 02.06.2025.
+//  Created by Дамир Шаймуханбетов on 23.10.2025.
 //
 
 import Foundation
 
-class GameViewModel: ObservableObject {
+final class GameViewModel: ObservableObject {
     @Published var field = [[GameCell]]()
+    
+    var rows: Int {
+        get {
+            Coordinator.shared.demention!.x
+        }
+    }
+    var columns: Int {
+        get {
+            Coordinator.shared.demention!.y
+        }
+    }
     
     var game : GameMineSweeper
     
@@ -18,24 +29,6 @@ class GameViewModel: ObservableObject {
 
     }
     
-    lazy var storage: StorageModel = {
-        return game.storage
-    }()
-    
-    lazy var selectedField: String = {
-        guard let name = storage.selectedField else { return "" }
-        return name
-    }()
-    
-    lazy var rows: Int = {
-        let field = storage.fetchData(name: selectedField)
-        return field?.rows ?? 0
-    }()
-    
-    lazy var columns: Int = {
-        let field = storage.fetchData(name: selectedField)
-        return field?.columns ?? 0
-    }()
     
     var alertLabel: String {
         switch game.gameStatus {
@@ -47,17 +40,19 @@ class GameViewModel: ObservableObject {
             return "You lose ;("
         case .pause:
             return "Pause"
+        case .start:
+            return "Start"
         }
     }
     
     func start() {
-        let field = self.game.field
-        self.field = field
+        let newField = game.gameLogic.createMineSweeper(bombs:[] , rows: rows , columns: columns)
+        self.field = newField
     }
     
     func updateField(){
-        let newfield = self.game.field
-        self.field = newfield
+        let newField = self.game.field
+        self.field = newField
     }
     
     func click(row: Int, column: Int) {
@@ -69,8 +64,4 @@ class GameViewModel: ObservableObject {
         self.game.makred(row: row, column: column)
         updateField()
     }
-    
-    
-    
-    
 }

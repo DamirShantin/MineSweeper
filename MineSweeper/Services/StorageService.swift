@@ -9,6 +9,7 @@ import Foundation
 
 final class StorageService {
     static var shared = StorageService()
+    private init() {}
     
     var storage: StorageModel {
         return CoreDataStorage.shared

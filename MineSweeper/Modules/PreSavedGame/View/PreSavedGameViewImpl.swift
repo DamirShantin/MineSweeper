@@ -8,15 +8,15 @@
 import Foundation
 import SwiftUI
 
-struct PreGameViewImpl: View {
+struct PreSavedGameViewImpl: View {
 //    var storage: StorageModel = MockDataStogare()
-    var vm: PreGameViewModel = {
+    var vm: PreSavedGameViewModel = {
         var storage: StorageModel = StorageService.shared.storage
-        var vm = PreGameViewModel(storage: storage)
+        var vm = PreSavedGameViewModel(storage: storage)
         return vm
     }()
     
     var body: some View {
-        PreGameView(vm: vm)
+        PreSavedGameView(vm: vm)
     }
 }

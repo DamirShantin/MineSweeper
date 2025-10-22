@@ -12,15 +12,17 @@ final class Coordinator: ObservableObject {
     static var shared = Coordinator()
     
     @Published var path = [Step]()
+    var demention: CoordField?
     
     enum Step: Hashable {
-        case game, create, preGame
-        
+        case savedGame, preSavedGame, create, preGame, game
         var view: some View {
             Group {
                 switch self {
-                case .preGame: PreGameViewImpl()
+                case .preSavedGame: PreSavedGameViewImpl()
                 case .create: CreateViewImpl()
+                case .savedGame: SavedGameViewImpl()
+                case .preGame: PreGameViewImpl()
                 case .game: GameViewImpl()
                 }
             }
