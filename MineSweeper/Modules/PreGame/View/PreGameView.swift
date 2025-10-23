@@ -36,7 +36,6 @@ struct PreGameView: View {
                     vm.countMines()
                 }
                 
-                
                 Text("X")
                 
                 Picker("columns", selection: $selectedColumns) {

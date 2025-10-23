@@ -15,7 +15,7 @@ struct MenuView: View {
             Button("Играть") { coordinator.next(.preGame)}
             Button("Свои поля") { coordinator.next(.preSavedGame)}
             Button("Создать поле") { coordinator.next(.create)}
-            
+            Button("Настройки") { coordinator.next(.create)}
         }
     }
 }

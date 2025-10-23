@@ -31,7 +31,6 @@ final class NormalGameLogicMineSweeper: GameLogicMineSweeperProtocol {
             self.bombs = bombs
             let newField = createManager.createMineSweeper(bombs: bombs, rows: rows, columns: columns)
             self.gameStatus = .game
-//            self.field = newField
             return click(field: newField, givenI: givenI, givenJ: givenJ)
         } else {
             var queue = Queue<[Int]>()
@@ -88,5 +87,10 @@ final class NormalGameLogicMineSweeper: GameLogicMineSweeperProtocol {
         return newField
     }
     
+    func lose() -> [CoordField]{
+        let difference = bombs.filter { !checkBombs.contains($0) }
+        print(difference)
+        return difference
+    }
     
 }

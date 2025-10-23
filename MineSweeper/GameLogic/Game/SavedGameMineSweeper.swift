@@ -19,7 +19,6 @@ class SavedGameMineSweeper: GameProtocol {
         start()
     }
 
-    
     var field: [[GameCell]]{
         get {
             return curentField
@@ -84,6 +83,9 @@ class SavedGameMineSweeper: GameProtocol {
         checkStatus()
     }
     
-//     
+    func lose() -> [CoordField]{
+        let difference = gameLogic.lose()
+        return difference
+    }
     
 }

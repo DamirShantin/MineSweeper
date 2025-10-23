@@ -9,7 +9,7 @@ import Foundation
 
 final class GameMineSweeper: GameProtocol {
     
-    let gameLogic: GameLogicMineSweeperProtocol
+    var gameLogic: GameLogicMineSweeperProtocol
     
     init(gameLogic: GameLogicMineSweeperProtocol) {
         self.gameLogic = gameLogic
@@ -85,6 +85,11 @@ final class GameMineSweeper: GameProtocol {
         let newField = gameLogic.marked(field: field, givenI: row, givenJ: column)
         self.curentField = newField
         checkStatus()
+    }
+    
+    func lose() -> [CoordField]{
+        let difference = gameLogic.lose()
+        return difference
     }
     
 }

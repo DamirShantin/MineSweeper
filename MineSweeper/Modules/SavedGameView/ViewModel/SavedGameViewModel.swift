@@ -10,7 +10,12 @@ import Foundation
 class SavedGameViewModel: ObservableObject {
     @Published var field = [[GameCell]]()
     
+    @Published var counterTimer: Int = 0
+    @Published var isRunningTimer: Bool = false
+    private var timer: Timer?
+    
     var game : SavedGameMineSweeper
+    
     
     init(game: SavedGameMineSweeper) {
         self.game = game
@@ -55,6 +60,7 @@ class SavedGameViewModel: ObservableObject {
     func start() {
         let field = self.game.field
         self.field = field
+//        counterTimer = 120
     }
     
     func updateField(){
@@ -72,7 +78,37 @@ class SavedGameViewModel: ObservableObject {
         updateField()
     }
     
+    func lose(){
+        if game.gameStatus != .lose {
+            game.gameLogic.gameStatus = .lose
+        }
+        let difference = game.lose()
+        var newField = self.field
+        for i in difference {
+            newField[i.x][i.y].clicked = true
+        }
+        self.field = newField
+    }
     
-    
-    
+        func startTimer() {
+            guard !isRunningTimer else { return }
+            isRunningTimer = true
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+                self?.counterTimer -= 1
+                if self?.counterTimer == 0 {
+                    self?.stopTimer()
+                    self?.lose()
+                }
+            }
+        }
+
+        func stopTimer() {
+            isRunningTimer = false
+            timer?.invalidate()
+            timer = nil
+        }
+
+        func resetTimer() {
+            counterTimer = 120
+        }
 }

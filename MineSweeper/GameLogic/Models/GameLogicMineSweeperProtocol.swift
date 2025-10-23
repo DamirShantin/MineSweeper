@@ -15,5 +15,6 @@ protocol GameLogicMineSweeperProtocol {
     func createMineSweeper(bombs: [CoordField], rows: Int, columns: Int) -> [[GameCell]]
     func click(field: [[GameCell]], givenI: Int, givenJ: Int) -> [[GameCell]]
     func marked(field: [[GameCell]], givenI: Int, givenJ: Int) -> [[GameCell]]
+    func lose() -> [CoordField]
 }
 

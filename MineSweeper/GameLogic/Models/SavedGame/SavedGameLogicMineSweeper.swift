@@ -86,5 +86,11 @@ final class SavedGameLogicMineSweeper: GameLogicMineSweeperProtocol {
         }
         return newField
     }
+    
+    func lose() -> [CoordField]{
+        let difference = bombs.filter { !checkBombs.contains($0) }
+        print(difference)
+        return difference
+    }
 }
 

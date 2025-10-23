@@ -9,7 +9,6 @@ import Foundation
 
 final class MineCountService {
     func createNumbersOfBombs(rows: Int, columns: Int) -> Int {
-        let queue = DispatchQueue(label: "countBombs", attributes: .concurrent)
         let totalCells = rows * columns
         var firstNumber: Double = 0
         var secondNumber: Double = 0
