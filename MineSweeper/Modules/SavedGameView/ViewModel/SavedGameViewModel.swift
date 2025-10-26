@@ -71,11 +71,17 @@ class SavedGameViewModel: ObservableObject {
     func click(row: Int, column: Int) {
         self.game.click(row: row, column: column)
         updateField()
+        if game.gameStatus == .lose {
+            lose()
+        }
     }
     
     func marked(row: Int, column: Int) {
         self.game.makred(row: row, column: column)
         updateField()
+        if game.gameStatus == .win {
+            print("win")
+        }
     }
     
     func lose(){

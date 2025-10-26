@@ -20,6 +20,10 @@ final class GameViewModel: ObservableObject {
         self.game = game
         start()
     }
+    deinit{
+        stopTimer()
+        print("deinit GameViewModel")
+    }
     
     var rows: Int {
         get {
@@ -69,11 +73,17 @@ final class GameViewModel: ObservableObject {
         if isRunningTimer == false {
             startTimer()
         }
+        if game.gameStatus == .lose {
+            lose()
+        }
     }
     
     func marked(row: Int, column: Int) {
         self.game.makred(row: row, column: column)
         updateField()
+        if game.gameStatus == .win {
+            win()
+        }
     }
     
     func lose(){
@@ -94,6 +104,7 @@ final class GameViewModel: ObservableObject {
     
     func win(){
         stopTimer()
+        
     }
     
         private func startTimer() {

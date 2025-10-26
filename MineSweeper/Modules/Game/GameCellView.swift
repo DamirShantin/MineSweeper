@@ -13,6 +13,9 @@ struct GameCellView: View {
     @Binding var value: Int
     @Binding var isMarked: Bool
     
+    var clickAction: () -> Void
+    var markAction: () -> Void
+    
     var nonActiveColor: Color = .gray
     
     var param: CGFloat {
@@ -37,10 +40,20 @@ struct GameCellView: View {
                         .frame(width: param, height: param)
                 }
             }
-            
-            
+            .onTapGesture {
+                clickAction()
+            }
+            .onLongPressGesture {
+                markAction()
+            }
+
     }
+    
 }
 #Preview {
-    return GameCellView(isActive: .constant(true), value: .constant(-2), isMarked: .constant(true))
+    GameCellView(isActive: .constant(true), value: .constant(-2), isMarked: .constant(true)){
+        //
+    } markAction:{
+        //
+    }
 }
