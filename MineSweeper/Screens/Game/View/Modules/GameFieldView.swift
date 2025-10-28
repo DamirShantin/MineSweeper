@@ -8,34 +8,13 @@
 import Foundation
 import SwiftUI
 
-struct GameView: View {
+struct GameFieldView: View {
     
     @StateObject var vm: GameViewModel
     
     var body: some View {
         ZStack {
             VStack {
-                HStack {
-                    Text("Mines: \(vm.countMines)")
-                        .foregroundStyle(.white)
-                    
-                    if vm.game.gameStatus == .lose {
-                        Text("You lose :(")
-                            .bold()
-                            .foregroundStyle(.red)
-                    } else if vm.game.gameStatus == .win {
-                        Text("You win :)")
-                            .bold()
-                            .foregroundStyle(.green)
-                    } else {
-                        Text("======")
-                            .bold()
-                            .foregroundStyle(.white)
-                    }
-                    Text("Time: \(vm.counterTimer)")
-                        .foregroundStyle(.white)
-                    
-                }
                 GridView(rows: vm.rows, columns: vm.columns) { row, col in
                     GameCellView(isActive: $vm.field[row][col].clicked, value: $vm.field[row][col].value, isMarked: $vm.field[row][col].marked){
                         vm.click(row: row, column: col)

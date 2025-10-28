@@ -18,11 +18,9 @@ struct ContentView: View {
                     .navigationDestination(for: Coordinator.Step.self) { destination in
                         destination.view
                     }
+                    .navigationBarBackButtonHidden(true)
+
             }
         }
     }
 }
-
-//#Preview {
-//    ContentView()
-//}

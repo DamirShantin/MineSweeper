@@ -9,54 +9,36 @@ import Foundation
 
 final class GameViewModel: ObservableObject {
     @Published var field = [[GameCell]]()
-    
     @Published var counterTimer: Int = 0
-    @Published var isRunningTimer: Bool = false
+    
+    private var isRunningTimer: Bool = false
     private var timer: Timer?
+    var rows: Int
+    var columns: Int
+    var countMines: Int
     
     var game : GameMineSweeper
     
     init(game: GameMineSweeper) {
         self.game = game
+        self.rows = Coordinator.shared.demention!.x
+        self.columns = Coordinator.shared.demention!.y
+        self.countMines = MineCountService().createNumbersOfBombs(rows: rows, columns: columns)
         start()
     }
+    
     deinit{
         stopTimer()
         print("deinit GameViewModel")
     }
-    
-    var rows: Int {
-        get {
-            Coordinator.shared.demention!.x
-        }
-    }
-    var columns: Int {
-        get {
-            Coordinator.shared.demention!.y
-        }
+    var timeString: String {
+        let m = counterTimer / 60
+        let s = counterTimer % 60
+        return String(format: "%02d:%02d", m, s)
     }
     
-    var countMines: Int {
-        get {
-            MineCountService().createNumbersOfBombs(rows: rows, columns: columns)
-        }
-    }
     
-    var alertLabel: String {
-        switch game.gameStatus {
-        case .game:
-            return ""
-        case .win:
-            return "You win!!"
-        case .lose:
-            return "You lose ;("
-        case .pause:
-            return "Pause"
-        case .start:
-            return "Start"
-        }
-    }
-    
+    // MARK: Game logic
     func start() {
         let newField = game.gameLogic.createMineSweeper(bombs:[] , rows: rows , columns: columns)
         self.field = newField
@@ -107,27 +89,24 @@ final class GameViewModel: ObservableObject {
         
     }
     
-        private func startTimer() {
-            print("таймер пошел")
-            self.counterTimer = 120
-            isRunningTimer = true
-            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
-                self?.counterTimer -= 1
-                if self?.counterTimer == 0 {
-                    self?.stopTimer()
-                    self?.lose()
-                }
-                RunLoop.main.add(self!.timer!, forMode: .common)
-            }
+    // MARK: Timer
+    private func startTimer() {
+        print("таймер пошел")
+        self.counterTimer = 0
+        isRunningTimer = true
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            self?.counterTimer += 1
+            
+            guard let self else { return }
+            RunLoop.main.add(self.timer!, forMode: .common)
         }
-
-        private func stopTimer() {
-            isRunningTimer = false
-            timer?.invalidate()
-            timer = nil
-        }
-
-        private func resetTimer() {
-            counterTimer = 120
-        }
+    }
+    private func stopTimer() {
+        isRunningTimer = false
+        timer?.invalidate()
+        timer = nil
+    }
+    private func resetTimer() {
+        counterTimer = 0
+    }
 }

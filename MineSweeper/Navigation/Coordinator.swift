@@ -17,15 +17,19 @@ final class Coordinator: ObservableObject {
     enum Step: Hashable {
         case savedGame, preSavedGame, create, preGame, game
         var view: some View {
-            Group {
-                switch self {
-                case .preSavedGame: PreSavedGameViewImpl()
-                case .create: CreateViewImpl()
-                case .savedGame: SavedGameViewImpl()
-                case .preGame: PreGameViewImpl()
-                case .game: GameViewImpl()
+            NavigationView{
+                Group {
+                    switch self {
+                    case .preSavedGame: PreSavedGameViewImpl()
+                    case .create: CreateViewImpl()
+                    case .savedGame: SavedGameViewImpl()
+                    case .preGame: PreGameViewImpl()
+                    case .game: GameViewImpl()
+                    }
                 }
+                .edgeSwipeRight { shared.back() }
             }
+            .navigationBarBackButtonHidden(true)
         }
     }
     
