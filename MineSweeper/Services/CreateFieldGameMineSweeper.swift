@@ -42,9 +42,11 @@ final class CreateFieldGameMineSweeper {
             let bomb = CoordField(x: i, y: j)
             
             if bomb != given {
-                bombs.append(bomb)
+                if !bombs.contains(bomb) {
+                    bombs.append(bomb)
+                    countBombs -= 1
+                }
             }
-            countBombs -= 1
         }
         return bombs
     }

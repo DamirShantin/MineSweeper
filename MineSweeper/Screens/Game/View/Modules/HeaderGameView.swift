@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct HeaderGameView: View {
-//    @StateObject var vm: GameViewModel
     var gameStatus: GameStatus
     var countMines: Int
     var timeString: String
+    
+//    @StateObject var vm: GameViewModel //for testing
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -25,16 +26,14 @@ struct HeaderGameView: View {
             }
             .padding(.horizontal)
             
-        }
-        
-        
+        }        
     }
     
     @ViewBuilder
     private func headerText() -> some View {
         HStack {
             BackButtonView(){
-                Coordinator.shared.back()
+                Coordinator.shared.back() // change
             }
             Spacer()
             Text("Minesweeper")
@@ -75,8 +74,11 @@ struct HeaderGameView: View {
                 .foregroundStyle(.white)
         }
     }
+    
+//    @ViewBuilder
+//    func testingButton() -> some View {
+//        Button("Save") {
+//            SingltonStorage.shared.saveData(name: "test", row: vm.rows, col: vm.columns, bombs: vm.game.gameLogic.bombs)
+//        }
+//    }
 }
-//
-//#Preview {
-//    HeaderGameView()
-//}

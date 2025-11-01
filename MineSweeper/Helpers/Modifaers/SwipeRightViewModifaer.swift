@@ -20,14 +20,12 @@ struct SwipeRightViewModifier: ViewModifier {
             .gesture(
                 DragGesture()
                     .onChanged { value in
-                        print("начало")
                         // активируем свайп только если начало касания в левой части экрана
                         if value.startLocation.x < edgeWidth {
                             isActive = true
                         }
                     }
                     .onEnded { value in
-                        print("конец")
                         if isActive {
                             if value.translation.width > threshold {
                                 onSwipeRight()

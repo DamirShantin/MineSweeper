@@ -33,7 +33,7 @@ struct GameCellView: View {
                         .stroke(Color(hex: "#CBB094"), lineWidth: 2)
                 )
             
-            if isActive {
+            if true { //isActive
                 if value == -1{
                     Image("bomb")
                         .resizable()

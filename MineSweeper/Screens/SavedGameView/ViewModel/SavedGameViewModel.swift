@@ -23,21 +23,21 @@ class SavedGameViewModel: ObservableObject {
 
     }
     
-    lazy var storage: StorageModel = {
+    lazy var storage: StorageModel = { // change
         return game.storage
     }()
     
-    lazy var selectedField: String = {
+    lazy var selectedField: String = { // change
         guard let name = storage.selectedField else { return "" }
         return name
     }()
     
-    lazy var rows: Int = {
+    lazy var rows: Int = { // change
         let field = storage.fetchData(name: selectedField)
         return field?.rows ?? 0
     }()
     
-    lazy var columns: Int = {
+    lazy var columns: Int = { // change
         let field = storage.fetchData(name: selectedField)
         return field?.columns ?? 0
     }()
@@ -60,7 +60,6 @@ class SavedGameViewModel: ObservableObject {
     func start() {
         let field = self.game.field
         self.field = field
-//        counterTimer = 120
     }
     
     func updateField(){
@@ -94,6 +93,7 @@ class SavedGameViewModel: ObservableObject {
             newField[i.x][i.y].clicked = true
         }
         self.field = newField
+        Coordinator.shared.back() // for test
     }
     
         func startTimer() {

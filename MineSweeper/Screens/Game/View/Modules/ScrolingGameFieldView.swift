@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-
 struct ScrolingGameFieldView< Content: View>: View {
     @State private var offset: CGSize = .zero
     @State private var lastDrag: CGSize = .zero
@@ -98,7 +97,6 @@ struct ScrolingGameFieldView< Content: View>: View {
                                         scale = minScale
                                     } else {
                                         scale = lastScale * value
-                                        print(scale)
                                     }
                                     
                                 } else {
