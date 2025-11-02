@@ -23,7 +23,7 @@ struct GameFieldView: View {
                         vm.marked(row: row, column: col)
                         
                     }
-                    .disabled(vm.field[row][col].clicked || vm.field[row][col].marked)
+//                    .disabled(vm.field[row][col].clicked || vm.field[row][col].marked)
                 }
                 .disabled((vm.game.gameStatus == .game || vm.game.gameStatus == .start) ? false : true)
             }

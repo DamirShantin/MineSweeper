@@ -72,9 +72,10 @@ final class GameViewModel: ObservableObject {
         if game.gameStatus != .lose {
             game.gameLogic.gameStatus = .lose
         }
-        let difference = game.lose()
+//        let difference = game.lose()
+        let allBombs = game.gameLogic.bombs
         var newField = self.field
-        for i in difference {
+        for i in allBombs {
             newField[i.x][i.y].clicked = true
         }
         self.field = newField

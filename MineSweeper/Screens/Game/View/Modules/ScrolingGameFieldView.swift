@@ -29,12 +29,12 @@ struct ScrolingGameFieldView< Content: View>: View {
     // Размер поля
     private var fieldSizeWidth: CGFloat{
         let widthOne = CGFloat(width / 10)
-        let width = widthOne * CGFloat(rows)
+        let width = widthOne * CGFloat(columns)
         return width
     }
     private var fieldSizeHigh: CGFloat{
         let widthOne = CGFloat(width / 10)
-        let width = widthOne * CGFloat(columns)
+        let width = widthOne * CGFloat(rows)
         return width
     }
     
@@ -48,6 +48,7 @@ struct ScrolingGameFieldView< Content: View>: View {
                 let screenHeight = geo.size.height
                 
                 ZStack {
+                    Color.clear.frame(maxWidth: .infinity, maxHeight: .infinity)
                     content
                         .disabled(!isActive)
                 }
@@ -62,7 +63,7 @@ struct ScrolingGameFieldView< Content: View>: View {
                                 // Ограничение смещения
                                 let maxX = (fieldSizeWidth * scale - screenWidth) / 2
                                 let maxY = (fieldSizeHigh * scale - screenHeight) / 2
-
+                                
                                 if fieldSizeHigh * scale > high && fieldSizeWidth * scale <= width {
                                     let newOffset = CGSize(width: 0,height: lastDrag.height + value.translation.height)
                                     offset.width = 0
@@ -79,6 +80,7 @@ struct ScrolingGameFieldView< Content: View>: View {
                                     offset.width = min(max(newOffset.width, -maxX), maxX)
                                     offset.height = min(max(newOffset.height, -maxY), maxY)
                                 }
+                                
                             }
                             .onEnded { _ in
                                 self.isActive = true

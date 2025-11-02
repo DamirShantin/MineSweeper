@@ -23,6 +23,8 @@ final class NormalGameLogicMineSweeper: GameLogicMineSweeperProtocol {
     }
     
     func click(field: [[GameCell]], givenI: Int, givenJ: Int) -> [[GameCell]] {
+        var newField = field
+        guard field[givenI][givenJ].marked == false else {return newField}
         let rows = field.count
         let columns = field.first!.count
         
@@ -34,7 +36,7 @@ final class NormalGameLogicMineSweeper: GameLogicMineSweeperProtocol {
             return click(field: newField, givenI: givenI, givenJ: givenJ)
         } else {
             var queue = Queue<[Int]>()
-            var newField = field
+            
             let rows = newField.count
             let columns = newField.first?.count
             
