@@ -11,8 +11,11 @@ final class PreGameViewModel: ObservableObject {
     
     var rows: Int = 4
     var columns: Int = 4
-    
     var minesCount: Int = 0
+    
+    init(){
+        countMines()
+    }
     
     func countMines() {
         let countService = MineCountService()

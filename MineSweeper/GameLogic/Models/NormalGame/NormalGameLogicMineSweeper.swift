@@ -78,8 +78,13 @@ final class NormalGameLogicMineSweeper: GameLogicMineSweeperProtocol {
     func marked(field: [[GameCell]], givenI: Int, givenJ: Int) -> [[GameCell]] {
         var newField = field
         newField[givenI][givenJ].marked.toggle()
-        self.checkBombs.append(CoordField(x: givenI, y: givenJ))
         
+        if newField[givenI][givenJ].marked == true {
+            self.checkBombs.append(CoordField(x: givenI, y: givenJ))
+        } else {
+            let index = self.checkBombs.firstIndex(where: { $0.x == givenI && $0.y == givenJ })
+            self.checkBombs.remove(at: index!)
+        }
         print(bombs)
         print(checkBombs)
         
