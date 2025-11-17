@@ -24,6 +24,7 @@ struct ScrolingGameFieldView <Content: View>: View {
         self.rows = rows
         self.columns = columns
         self.content = content()
+        
     }
     
     // Размер поля
@@ -46,6 +47,7 @@ struct ScrolingGameFieldView <Content: View>: View {
             GeometryReader { geo in
                 let screenWidth = geo.size.width
                 let screenHeight = geo.size.height
+
                 
                 ZStack {
                     Color.clear.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -58,17 +60,19 @@ struct ScrolingGameFieldView <Content: View>: View {
                     SimultaneousGesture(
                         DragGesture()
                             .onChanged { value in
-                                guard (fieldSizeWidth * scale) > width || (fieldSizeHigh * scale) > high else { return }
+                                guard (fieldSizeWidth * scale) > screenWidth || (fieldSizeHigh * scale) > screenHeight else { return }
+                                
+                                
                                 self.isActive = false
                                 // Ограничение смещения
                                 let maxX = (fieldSizeWidth * scale - screenWidth) / 2
                                 let maxY = (fieldSizeHigh * scale - screenHeight) / 2
                                 
-                                if fieldSizeHigh * scale > high && fieldSizeWidth * scale <= width {
+                                if fieldSizeHigh * scale > screenHeight && fieldSizeWidth * scale <= screenWidth {
                                     let newOffset = CGSize(width: 0,height: lastDrag.height + value.translation.height)
                                     offset.width = 0
                                     offset.height = min(max(newOffset.height, -maxY), maxY)
-                                } else if fieldSizeWidth * scale > width && fieldSizeHigh * scale <= high{
+                                } else if fieldSizeWidth * scale > screenWidth && fieldSizeHigh * scale <= screenHeight{
                                     let newOffset = CGSize(width: lastDrag.width + value.translation.width, height: 0)
                                     offset.width = min(max(newOffset.width, -maxX), maxX)
                                     offset.height = 0
@@ -90,8 +94,8 @@ struct ScrolingGameFieldView <Content: View>: View {
                             .onChanged { value in
                                 self.isActive = false
 
-                                if fieldSizeWidth > width && fieldSizeHigh > high {
-                                    let minScale = width / fieldSizeWidth
+                                if fieldSizeWidth > screenWidth && fieldSizeHigh > screenWidth {
+                                    let minScale = screenWidth / fieldSizeWidth
                                     
                                     if lastScale * value > 2 {
                                         scale = 2
@@ -102,8 +106,8 @@ struct ScrolingGameFieldView <Content: View>: View {
                                     }
                                     
                                 } else {
-                                    let minScaleHigh = high / fieldSizeHigh
-                                    let minScaleWidht = width / fieldSizeWidth
+                                    let minScaleHigh = screenWidth / fieldSizeHigh
+                                    let minScaleWidht = screenWidth / fieldSizeWidth
                                     let max = max(minScaleHigh, minScaleWidht)
                                     if lastScale * value >= max {
                                         scale = max
