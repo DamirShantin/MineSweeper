@@ -18,7 +18,7 @@ struct SliderAndTextFieldView: View {
     var body: some View {
         
         HStack(alignment: .center, spacing: 20){
-            SliderView(value: Binding(
+            HorSliderView(value: Binding(
                 get: { Float(value) },
                 set: { newVal in
                     value = Int(newVal)

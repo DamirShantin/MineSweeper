@@ -15,17 +15,14 @@ class SavedGameViewModel: ObservableObject {
     private var timer: Timer?
     
     var game : SavedGameMineSweeper
-    
+    var storage: StorageModel
     
     init(game: SavedGameMineSweeper) {
         self.game = game
+        self.storage = game.storage
         start()
 
     }
-    
-    lazy var storage: StorageModel = { // change
-        return game.storage
-    }()
     
     lazy var selectedField: String = { // change
         guard let name = storage.selectedField else { return "" }

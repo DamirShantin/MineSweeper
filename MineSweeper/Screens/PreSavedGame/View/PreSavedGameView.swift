@@ -15,34 +15,30 @@ struct PreSavedGameView: View {
     
     
     var body: some View {
-        VStack {
-            Spacer()
-            VStack {
+        ZStack {
+            Color(hex: "#e9e0d3").ignoresSafeArea(edges: .all)
+            VStack(spacing: 20) {
+                Spacer()
                 
-                Button ("Сохранения") {
-                    self.showSaves = true
-                    if selected == "" {
-                        self.selected = vm.storage.namesOfFields.first ?? ""
-                    }
-                }
-                .buttonStyle(.bordered)
-                .sheet(isPresented: $showSaves) {
-                    PickerModalView(selected: $selected, items: vm.storage.namesOfFields)
-                }
+                Text("Saved Games")
+                    .font(.system(size: 50, weight: .bold))
+                    .foregroundColor(Color(hex: "#3B2F2A"))
+                    .shadow(radius: 5, x: 0, y: 5)
+                    .padding(.bottom, 50)
+                
+                SliderAndScrollView(vm: vm, selectField: $selected)
+                    .frame(height: 400)
+                    .padding(.vertical, 10)
+                
+                Spacer()
+                StartGameButton(text: "Start") {
+                    vm.storage.selectedField = selected
+                    Coordinator.shared.next(.savedGame)
+                }                
+                .disabled(selected == "")
+                .padding(.bottom, 40)
+                
             }
-            
-            Spacer()
-            Button("Начать игру") {
-                vm.storage.selectedField = selected
-                Coordinator.shared.next(.savedGame)
-            }
-            .padding()
-            .font(.system(size: 23))
-            .foregroundStyle(.black)
-            .background(.gray)
-            .clipShape(.rect(cornerRadius: 10))
-            .padding(.bottom, 50)
-            
         }
     }
 }

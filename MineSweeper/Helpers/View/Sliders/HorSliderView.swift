@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SliderView: View {
+struct HorSliderView: View {
     @Binding var value: Float
     
     var imageOnSlider: Image
