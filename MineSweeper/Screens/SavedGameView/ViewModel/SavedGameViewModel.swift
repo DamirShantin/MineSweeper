@@ -16,28 +16,19 @@ class SavedGameViewModel: ObservableObject {
     
     var game : SavedGameMineSweeper
     var storage: StorageModel
+    var selectedField: String
+    var rows: Int
+    var columns: Int
     
     init(game: SavedGameMineSweeper) {
         self.game = game
         self.storage = game.storage
+        self.selectedField = storage.selectedField!
+        self.rows = storage.fetchData(name: selectedField)!.rows
+        self.columns = storage.fetchData(name: selectedField)!.columns
         start()
 
     }
-    
-    lazy var selectedField: String = { // change
-        guard let name = storage.selectedField else { return "" }
-        return name
-    }()
-    
-    lazy var rows: Int = { // change
-        let field = storage.fetchData(name: selectedField)
-        return field?.rows ?? 0
-    }()
-    
-    lazy var columns: Int = { // change
-        let field = storage.fetchData(name: selectedField)
-        return field?.columns ?? 0
-    }()
     
     var alertLabel: String {
         switch game.gameStatus {
@@ -54,6 +45,7 @@ class SavedGameViewModel: ObservableObject {
         }
     }
     
+    //MARK: Game logic
     func start() {
         let field = self.game.field
         self.field = field
@@ -93,25 +85,26 @@ class SavedGameViewModel: ObservableObject {
         Coordinator.shared.back() // for test
     }
     
-        func startTimer() {
-            guard !isRunningTimer else { return }
-            isRunningTimer = true
-            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
-                self?.counterTimer -= 1
-                if self?.counterTimer == 0 {
-                    self?.stopTimer()
-                    self?.lose()
-                }
+    //MARK: Timer
+    func startTimer() {
+        guard !isRunningTimer else { return }
+        isRunningTimer = true
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            self?.counterTimer -= 1
+            if self?.counterTimer == 0 {
+                self?.stopTimer()
+                self?.lose()
             }
         }
-
-        func stopTimer() {
-            isRunningTimer = false
-            timer?.invalidate()
-            timer = nil
-        }
-
-        func resetTimer() {
-            counterTimer = 120
-        }
+    }
+    
+    func stopTimer() {
+        isRunningTimer = false
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    func resetTimer() {
+        counterTimer = 120
+    }
 }

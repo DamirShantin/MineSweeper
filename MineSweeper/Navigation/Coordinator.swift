@@ -12,10 +12,9 @@ final class Coordinator: ObservableObject {
     static var shared = Coordinator()
     
     @Published var path = [Step]()
-    var demention: CoordField?
     
     enum Step: Hashable {
-        case savedGame, preSavedGame, create, preGame, game
+        case savedGame, preSavedGame, create, preGame, game(demention: CoordField)
         var view: some View {
             NavigationView{
                 Group {
@@ -24,7 +23,7 @@ final class Coordinator: ObservableObject {
                     case .create: CreateViewImpl()
                     case .savedGame: SavedGameViewImpl()
                     case .preGame: PreGameViewImpl()
-                    case .game: GameViewImpl()
+                    case .game(let demention): GameViewImpl(demention: demention)
                     }
                 }
                 .edgeSwipeRight { shared.back() }

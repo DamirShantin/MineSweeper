@@ -8,7 +8,6 @@
 import Foundation
 
 struct GameCell{
-    
     var value: Int
     var clicked: Bool = false
     var marked: Bool = false

@@ -43,9 +43,3 @@ struct PreSavedGameView: View {
     }
 }
 
-
-//#Preview {
-//    var storage = MockDataStogare()
-//    @StateObject var vm = PreGameViewModel(storage: storage)
-//    return PreGameView(vm: vm)
-//}

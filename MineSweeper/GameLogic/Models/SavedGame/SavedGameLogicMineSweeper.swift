@@ -13,7 +13,6 @@ final class SavedGameLogicMineSweeper: GameLogicMineSweeperProtocol {
     var checkBombs = [CoordField]()
     var gameStatus: GameStatus = .start
     
-    
     func createMineSweeper(bombs: [CoordField], rows: Int, columns: Int) -> [[GameCell]] {
         var field = Array(repeating: Array(repeating: GameCell(value: 0), count: columns), count: rows)
         

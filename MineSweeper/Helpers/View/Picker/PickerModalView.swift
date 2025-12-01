@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PickerModalView: View {
     @Binding var selected: String
-    @Environment (\.presentationMode) var presentationMode
+//    @Environment (\.presentationMode) var presentationMode
     var items: [String]
     var body: some View{
         VStack {
@@ -22,7 +22,7 @@ struct PickerModalView: View {
             .pickerStyle(.wheel)
             
             Button("OK") {
-                presentationMode.wrappedValue.dismiss()
+//                presentationMode.wrappedValue.dismiss()
             }
             .buttonStyle(.bordered)
             .frame(width: 100)

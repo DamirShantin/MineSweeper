@@ -17,12 +17,15 @@ final class GameViewModel: ObservableObject {
     var columns: Int
     var countMines: Int
     
-    var game : GameMineSweeper
+    var game : NormalGameMineSweeper
     
-    init(game: GameMineSweeper) {
+    var demention: CoordField
+    
+    init(game: NormalGameMineSweeper, demention: CoordField) {
         self.game = game
-        self.rows = Coordinator.shared.demention!.x
-        self.columns = Coordinator.shared.demention!.y
+        self.demention = demention
+        self.rows = demention.x
+        self.columns = demention.y
         self.countMines = MineCountService().createNumbersOfBombs(rows: rows, columns: columns)
         start()
     }
@@ -40,6 +43,7 @@ final class GameViewModel: ObservableObject {
     
     // MARK: Game logic
     func start() {
+        
         let newField = game.gameLogic.createMineSweeper(bombs:[] , rows: rows , columns: columns)
         self.field = newField
     }

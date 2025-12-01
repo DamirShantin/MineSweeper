@@ -108,8 +108,8 @@ struct CreateView: View {
     }
     
     func buttonAlertOk(_ nameOfField: String){
-        let name = vm.createNameField(name: nameOfField)
-        self.storage.saveData(name: name, row: selectedRows, col: selectedColumns, bombs: vm.game.bombs)
+//        let name = vm.createNameField(name: nameOfField)
+        self.storage.saveData(name: nameOfField, row: selectedRows, col: selectedColumns, bombs: vm.game.bombs)
         self.nameOfField = ""
         vm.clearField()
     }

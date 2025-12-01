@@ -7,39 +7,35 @@
 
 import Foundation
 
-final class GameMineSweeper: GameProtocol {
+final class NormalGameMineSweeper: GameProtocol {
     
     var gameLogic: GameLogicMineSweeperProtocol
-    
-    init(gameLogic: GameLogicMineSweeperProtocol) {
-        self.gameLogic = gameLogic
-        start()
-    }
+    var demention: CoordField
+    var rows: Int
+    var columns: Int
     
     var field: [[GameCell]]{
         get {
             return curentField
         }
     }
-    var curentField = [[GameCell]]()
-    
     var gameStatus: GameStatus {
         get {
             gameLogic.gameStatus
         }
     }
     
-    var rows: Int {
-        get {
-            Coordinator.shared.demention!.x
-        }
-    }
+    private var curentField = [[GameCell]]()
     
-    var columns: Int {
-        get {
-            Coordinator.shared.demention!.y
-        }
+    init(gameLogic: GameLogicMineSweeperProtocol, demention: CoordField) {
+        self.gameLogic = gameLogic
+        self.demention = demention
+        self.rows = demention.x
+        self.columns = demention.y
+        start()
     }
+
+    //MARK: Methods
     
     func start() {
         let newField = gameLogic.createMineSweeper(bombs: [], rows: rows, columns: columns)

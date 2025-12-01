@@ -49,11 +49,6 @@ class CreateFieldsViewModel: ObservableObject, FieldValidationProtocol {
         self.game.bombs = [CoordField]()
     }
     
-//    func createMineSweeperField() {
-//        game.createMineSweeper(bombs: game.bombs, rows: rows, columns: columns)
-//        
-//    }
-    
     func createNameField(name: String) -> String {
         return "\(self.rows) x \(self.columns) " + name
     }

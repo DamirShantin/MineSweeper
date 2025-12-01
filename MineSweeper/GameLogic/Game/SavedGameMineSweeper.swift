@@ -9,7 +9,6 @@ import Foundation
 
 class SavedGameMineSweeper: GameProtocol {
     
-    
     var storage: StorageModel
     var gameLogic: GameLogicMineSweeperProtocol
     
@@ -25,20 +24,21 @@ class SavedGameMineSweeper: GameProtocol {
         }
     }
     
-    var curentField = [[GameCell]]()
-    
     var gameStatus: GameStatus {
         get {
             gameLogic.gameStatus
         }
     }
     
+    private var curentField = [[GameCell]]()
+    
+    //MARK: Methods
+
     func start() {
         guard let name = storage.selectedField else { return }
         guard let field = storage.fetchData(name: name) else { return }
         let newField = gameLogic.createMineSweeper(bombs: field.bombs, rows: field.rows, columns: field.columns)
         self.curentField = newField
-//        self.curentBombs = bombs
         self.gameLogic.bombs = field.bombs
     }
     
