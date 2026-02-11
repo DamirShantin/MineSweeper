@@ -12,4 +12,5 @@ struct Field {
     var rows: Int
     var columns: Int
     var bombs: [CoordField]
+    var id: String
 }

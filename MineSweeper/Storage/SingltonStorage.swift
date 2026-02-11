@@ -18,7 +18,7 @@ final class SingltonStorage: StorageModel {
     var selectedField: String?
     
     func saveData(name: String, row: Int, col: Int, bombs: [CoordField]) {
-        let field = Field(name: name, rows: row, columns: col, bombs: bombs)
+        let field = Field(name: name, rows: row, columns: col, bombs: bombs, id: UUID().uuidString)
         storage[name] = field
         namesOfFields.append(name)
     }
@@ -32,6 +32,11 @@ final class SingltonStorage: StorageModel {
     
     func loadData() {
         //
+    }
+    
+    func deleteData(name: String) {
+        storage[name] = nil
+        namesOfFields.removeAll { $0 == name }
     }
     
 }

@@ -24,4 +24,12 @@ class PreSavedGameViewModel: ObservableObject{
             fields.append(field)
         }
     }
+    
+    func deleteField(at field: Field){
+        //
+    }
+    
+    func detailField(at field: Field){
+        //
+    }
 }

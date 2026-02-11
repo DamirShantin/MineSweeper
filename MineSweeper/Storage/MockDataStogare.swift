@@ -13,7 +13,7 @@ struct MockDataStogare: StorageModel{
     }
     
     func fetchData(name: String) -> Field? {
-        return Field(name: "", rows: 1, columns: 1, bombs: [])
+        return Field(name: "", rows: 1, columns: 1, bombs: [], id: UUID().uuidString)
     }
     
     func fetchBombs(name: String) -> [CoordField]? {
@@ -22,6 +22,10 @@ struct MockDataStogare: StorageModel{
 
     
     func loadData() {
+        //
+    }
+    
+    func deleteData(name: String) {
         //
     }
     

@@ -23,6 +23,7 @@ extension ModelField_ {
     @NSManaged public var row_: Int16
     @NSManaged public var column_: Int16
     @NSManaged public var bombs_: NSSet
+    @NSManaged public var id_: String?
 
 }
 

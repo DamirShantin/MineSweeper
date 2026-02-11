@@ -12,6 +12,7 @@ final class CoreDataStorage: StorageModel{
     static var shared: CoreDataStorage = CoreDataStorage()
     
     private init() {
+        checkNillId()
         loadData()
     }
     
@@ -49,6 +50,7 @@ final class CoreDataStorage: StorageModel{
         model.name_ = name
         model.row_ = Int16(row)
         model.column_ = Int16(col)
+        model.id_ = UUID().uuidString
         
         for bomb in bombs {
             let coordField = CoordField_(context: persistentContainer.viewContext)
@@ -59,7 +61,7 @@ final class CoreDataStorage: StorageModel{
         loadData()
         saveContext()
     }
-    
+    // change: delete name, return [Field], use convert
     func fetchData(name: String) -> Field? {
         var field: ModelField_?
         let _ = fields.map { item in
@@ -71,7 +73,8 @@ final class CoreDataStorage: StorageModel{
         return convert(field!)
     }
     
-    func convert(_ field: ModelField_) -> Field {
+    private func convert(_ field: ModelField_) -> Field {
+        let id = field.id_!
         let name = field.name_
         let row = Int(field.row_)
         let column = Int(field.column_)
@@ -86,7 +89,7 @@ final class CoreDataStorage: StorageModel{
                 }
             }
         }
-        return Field(name: name, rows: row, columns: column, bombs: bombs)
+        return Field(name: name, rows: row, columns: column, bombs: bombs, id: id)
     }
     
     func loadData() {
@@ -100,5 +103,30 @@ final class CoreDataStorage: StorageModel{
             }
             self.namesOfFields = names
         }
+    }
+    
+    //MARK: overwrite with id, add id in db
+    func deleteData(name: String) {
+        
+        let req = CoordField_.fetchRequest()
+        req.predicate = NSPredicate(format: "field_.name_ == %@", name)
+        
+        if let field = try? persistentContainer.viewContext.fetch(req), !field.isEmpty, let newField = field.first {
+            persistentContainer.viewContext.delete(newField)
+        }
+        
+    }
+    
+    private func checkNillId() {
+        let req = ModelField_.fetchRequest()
+        guard let fields = try? persistentContainer.viewContext.fetch(req), !fields.isEmpty else { return }
+        
+        let _ = fields.map {
+            if $0.id_ == nil {
+                let id = UUID().uuidString
+                $0.id_ = id
+            }
+        }
+        saveContext()
     }
 }

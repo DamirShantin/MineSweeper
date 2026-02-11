@@ -42,6 +42,7 @@ struct ItemSavedGameView: View {
             Spacer()
         }
         .frame(width: 270, height: 150)
+        .shadow(radius: 5, x: 1, y: 1)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .stroke(selectedField == field.name ? Color.black : Color(hex: "#7d3f14"), lineWidth: 5)
