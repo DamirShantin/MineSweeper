@@ -35,8 +35,7 @@ class SavedGameMineSweeper: GameProtocol {
     //MARK: Methods
 
     func start() {
-        guard let name = storage.selectedField else { return }
-        guard let field = storage.fetchData(name: name) else { return }
+        guard let field = storage.selectedField else { return }
         let newField = gameLogic.createMineSweeper(bombs: field.bombs, rows: field.rows, columns: field.columns)
         self.curentField = newField
         self.gameLogic.bombs = field.bombs

@@ -9,10 +9,9 @@ import Foundation
 
 protocol StorageModel{
     func saveData(name: String, row: Int, col: Int, bombs: [CoordField])
-    func fetchData(name: String) -> Field?
     func loadData()
-    func deleteData(name: String)
+    func deleteData(id: String)
     
-    var namesOfFields: [String] { get set } // delete
-    var selectedField: String? { get set } // overwrite with id
+    var fields: [Field] { get set } 
+    var selectedField: Field? { get set }
 }

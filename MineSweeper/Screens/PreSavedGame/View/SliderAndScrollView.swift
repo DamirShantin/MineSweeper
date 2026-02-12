@@ -14,7 +14,7 @@ struct SliderAndScrollView: View {
     @State private var sliderValue: Float = 0
     @State private var currentIndex: Int = 0
     @State private var isDraggingSlider = false
-    @Binding var selectField: String
+    @Binding var selectField: Field
     
     var count: Int {
         return vm.fields.count
@@ -29,7 +29,9 @@ struct SliderAndScrollView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVStack(spacing: 5) {
                     ForEach(0..<count, id: \.self) { i in
-                        ItemSavedGameView (selectedField: $selectField, field: vm.fields[i]) { name in selectField = name }
+                        ItemSavedGameView (selectedField: $selectField, field: vm.fields[i]) { field in selectField = field }
+                        delete: { id in vm.deleteField(id: id) }
+                        detail: { id in vm.detailField(id: id) }
                             .padding(.vertical, 6)
                     }
                 }

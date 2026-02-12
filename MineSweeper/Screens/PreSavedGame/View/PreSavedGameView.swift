@@ -10,7 +10,7 @@ import SwiftUI
 struct PreSavedGameView: View {
     @StateObject var vm: PreSavedGameViewModel
     
-    @State private var selected: String = ""
+    @State private var selected: Field = Field(name: "", rows: 5, columns: 5, bombs: [], id: "")
     @State private var showSaves: Bool = false
     
     
@@ -35,7 +35,7 @@ struct PreSavedGameView: View {
                     vm.storage.selectedField = selected
                     Coordinator.shared.next(.savedGame)
                 }                
-                .disabled(selected == "")
+                .disabled(selected.id == "")
                 .padding(.bottom, 40)
                 
             }

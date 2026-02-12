@@ -19,17 +19,19 @@ class PreSavedGameViewModel: ObservableObject{
     }
     
     private func loadFields() {
-        let _ = storage.namesOfFields.map { name in
-            guard let field = storage.fetchData(name: name) else { return }
-            fields.append(field)
-        }
+//        let _ = storage.namesOfFields.map { name in
+//            guard let field = storage.fetchData(name: name) else { return }
+//            fields.append(field)
+//        }
+        self.fields = storage.fields
     }
     
-    func deleteField(at field: Field){
-        //
+    func deleteField(id: String){
+        storage.deleteData(id: id)
+        loadFields()
     }
     
-    func detailField(at field: Field){
+    func detailField(id: String){
         //
     }
 }

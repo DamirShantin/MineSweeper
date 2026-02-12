@@ -8,6 +8,8 @@
 import Foundation
 
 struct MockDataStogare: StorageModel{
+    var fields: [Field] = []
+    
     func saveData(name: String, row: Int, col: Int, bombs: [CoordField]) {
         //
     }
@@ -25,12 +27,12 @@ struct MockDataStogare: StorageModel{
         //
     }
     
-    func deleteData(name: String) {
+    func deleteData(id: String) {
         //
     }
     
     var namesOfFields: [String] = ["Test1", "Test2"]
-    var selectedField: String?
+    var selectedField: Field?
     
     
 }

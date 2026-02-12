@@ -16,7 +16,7 @@ class SavedGameViewModel: ObservableObject {
     
     var game : SavedGameMineSweeper
     var storage: StorageModel
-    var selectedField: String
+    var selectedField: Field
     var rows: Int
     var columns: Int
     
@@ -24,8 +24,8 @@ class SavedGameViewModel: ObservableObject {
         self.game = game
         self.storage = game.storage
         self.selectedField = storage.selectedField!
-        self.rows = storage.fetchData(name: selectedField)!.rows
-        self.columns = storage.fetchData(name: selectedField)!.columns
+        self.rows = selectedField.rows
+        self.columns = selectedField.columns
         start()
 
     }
