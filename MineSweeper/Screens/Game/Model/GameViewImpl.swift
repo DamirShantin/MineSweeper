@@ -13,8 +13,8 @@ struct GameViewImpl: View {
     var type: GameTypes
     
     func createVM() -> GameViewModel {
-        let logic = NormalGameLogicMineSweeper(gameType: type)
-        let game = NormalGameMineSweeper(gameLogic: logic, gameField: gameField)
+        let logic = NormalGameLogicMineSweeper(gameType: type, gameField: gameField)
+        let game = NormalGameMineSweeper(gameLogic: logic)
         return GameViewModel(game: game, gameField: gameField)
     }
     

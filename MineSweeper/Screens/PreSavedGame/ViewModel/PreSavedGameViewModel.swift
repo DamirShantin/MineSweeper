@@ -19,10 +19,6 @@ class PreSavedGameViewModel: ObservableObject{
     }
     
     private func loadFields() {
-//        let _ = storage.namesOfFields.map { name in
-//            guard let field = storage.fetchData(name: name) else { return }
-//            fields.append(field)
-//        }
         self.fields = storage.fields
     }
     
@@ -34,4 +30,5 @@ class PreSavedGameViewModel: ObservableObject{
     func detailField(id: String){
         //
     }
+
 }

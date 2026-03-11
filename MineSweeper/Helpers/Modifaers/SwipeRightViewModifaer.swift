@@ -16,11 +16,10 @@ struct SwipeRightViewModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .contentShape(Rectangle()) // чтобы ловить жест по всей области
+            .contentShape(Rectangle())
             .gesture(
                 DragGesture()
                     .onChanged { value in
-                        // активируем свайп только если начало касания в левой части экрана
                         if value.startLocation.x < edgeWidth {
                             isActive = true
                         }

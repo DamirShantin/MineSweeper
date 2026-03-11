@@ -11,6 +11,8 @@ protocol GameLogicMineSweeperProtocol {
     var bombs: [CoordField] {get set}
     var checkBombs: [CoordField] {get set}
     var gameStatus: GameStatus {get set}
+    var gameType: GameTypes {get set}
+    var gameField: GameField {get set}
     
     func createMineSweeper(bombs: [CoordField], rows: Int, columns: Int) -> [[GameCell]]
     func click(field: [[GameCell]], givenI: Int, givenJ: Int) -> [[GameCell]]

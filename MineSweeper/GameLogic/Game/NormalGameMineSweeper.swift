@@ -11,6 +11,7 @@ final class NormalGameMineSweeper: GameProtocol {
     
     var gameLogic: GameLogicMineSweeperProtocol
     var gameField: GameField
+    var gameType: GameTypes
     var rows: Int
     var columns: Int
     
@@ -27,9 +28,10 @@ final class NormalGameMineSweeper: GameProtocol {
     
     private var curentField = [[GameCell]]()
     
-    init(gameLogic: GameLogicMineSweeperProtocol, gameField: GameField) {
+    init(gameLogic: GameLogicMineSweeperProtocol) {
         self.gameLogic = gameLogic
-        self.gameField = gameField
+        self.gameType = gameLogic.gameType
+        self.gameField = gameLogic.gameField
         self.rows = gameField.rows
         self.columns = gameField.columns
         start()
@@ -38,8 +40,14 @@ final class NormalGameMineSweeper: GameProtocol {
     //MARK: Methods
     
     func start() {
-        let newField = gameLogic.createMineSweeper(bombs: [], rows: rows, columns: columns)
-        curentField = newField
+        if gameType == .normal{
+            let newField = gameLogic.createMineSweeper(bombs: [], rows: rows, columns: columns)
+            curentField = newField
+        } else {
+            let newField = gameLogic.createMineSweeper(bombs: gameField.bombs, rows: rows, columns: columns)
+            curentField = newField
+        }
+        
     }
     
     func end() {

@@ -13,13 +13,14 @@ final class NormalGameLogicMineSweeper: GameLogicMineSweeperProtocol {
     var checkBombs = [CoordField]()
     var gameStatus: GameStatus = .start
     var gameType: GameTypes
+    var gameField: GameField
     
     let createManager = CreateFieldGameMineSweeper()
     
-    init (gameType: GameTypes) {
+    init (gameType: GameTypes, gameField: GameField) {
         self.gameType = gameType
+        self.gameField = gameField
     }
-    
     
     func createMineSweeper(bombs: [CoordField], rows: Int, columns: Int) -> [[GameCell]] {
         if gameType == .normal {
@@ -49,6 +50,8 @@ final class NormalGameLogicMineSweeper: GameLogicMineSweeperProtocol {
                 return click(field: newField, givenI: givenI, givenJ: givenJ)
             } else {
                 gameStatus = .game
+                self.bombs = gameField.bombs
+                return click(field: field, givenI: givenI, givenJ: givenJ)
             }
             
         } else {
@@ -84,6 +87,11 @@ final class NormalGameLogicMineSweeper: GameLogicMineSweeperProtocol {
                                 newField[i][j].value = -2
                                 queue.enqueue(element: [i,j])
                             }
+                            newField[i][j].marked = false
+                            if let index = self.checkBombs.firstIndex(where: { $0.x == i && $0.y == j }) {
+                                self.checkBombs.remove(at: index)
+                            }
+                            
                         }
                     }
                 }
@@ -111,6 +119,8 @@ final class NormalGameLogicMineSweeper: GameLogicMineSweeperProtocol {
         }
         return newField
     }
+    
+//    private func checkAndDeleteBomb( )
     
     func lose() -> [CoordField]{
         let difference = bombs.filter { !checkBombs.contains($0) }

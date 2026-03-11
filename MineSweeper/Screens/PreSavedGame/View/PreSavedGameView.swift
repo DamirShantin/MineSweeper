@@ -31,10 +31,10 @@ struct PreSavedGameView: View {
                     .padding(.vertical, 10)
                 
                 Spacer()
-                StartGameButton(text: "Start") {
+                StartGameButton(text: "Play") {
                     vm.storage.selectedField = selected
-                    Coordinator.shared.next(.savedGame)
-                }                
+                    Coordinator.shared.next(.game(gameField: selected, type: .custom))
+                }
                 .disabled(selected.id == "")
                 .padding(.bottom, 40)
                 
