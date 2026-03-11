@@ -10,7 +10,7 @@ import SwiftUI
 struct PreSavedGameView: View {
     @StateObject var vm: PreSavedGameViewModel
     
-    @State private var selected: Field = Field(name: "", rows: 5, columns: 5, bombs: [], id: "")
+    @State private var selected: GameField = GameField(name: "", rows: 5, columns: 5, bombs: [], id: "")
     @State private var showSaves: Bool = false
     
     

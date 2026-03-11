@@ -14,7 +14,7 @@ struct SliderAndScrollView: View {
     @State private var sliderValue: Float = 0
     @State private var currentIndex: Int = 0
     @State private var isDraggingSlider = false
-    @Binding var selectField: Field
+    @Binding var selectField: GameField
     
     var count: Int {
         return vm.fields.count

@@ -8,14 +8,14 @@
 import Foundation
 
 struct MockDataStogare: StorageModel{
-    var fields: [Field] = []
+    var fields: [GameField] = []
     
     func saveData(name: String, row: Int, col: Int, bombs: [CoordField]) {
         //
     }
     
-    func fetchData(name: String) -> Field? {
-        return Field(name: "", rows: 1, columns: 1, bombs: [], id: UUID().uuidString)
+    func fetchData(name: String) -> GameField? {
+        return GameField(name: "", rows: 1, columns: 1, bombs: [], id: UUID().uuidString)
     }
     
     func fetchBombs(name: String) -> [CoordField]? {
@@ -32,7 +32,7 @@ struct MockDataStogare: StorageModel{
     }
     
     var namesOfFields: [String] = ["Test1", "Test2"]
-    var selectedField: Field?
+    var selectedField: GameField?
     
     
 }

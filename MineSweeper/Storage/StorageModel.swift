@@ -12,6 +12,6 @@ protocol StorageModel{
     func loadData()
     func deleteData(id: String)
     
-    var fields: [Field] { get set } 
-    var selectedField: Field? { get set }
+    var fields: [GameField] { get set } 
+    var selectedField: GameField? { get set }
 }

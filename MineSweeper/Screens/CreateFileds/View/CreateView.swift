@@ -82,7 +82,7 @@ struct CreateView: View {
                 
                 Spacer()
                 
-                Button ("Создать поле") {
+                Button ("Save") {
                     buttonCreateField()
                 }
                 .buttonStyle(.bordered)
@@ -102,14 +102,12 @@ struct CreateView: View {
     }
     
     func buttonCreateField() {
-        vm.clearField()
-        vm.createBomb()
         showAlert = true
     }
     
     func buttonAlertOk(_ nameOfField: String){
 //        let name = vm.createNameField(name: nameOfField)
-        self.storage.saveData(name: nameOfField, row: selectedRows, col: selectedColumns, bombs: vm.game.bombs)
+        self.storage.saveData(name: nameOfField, row: selectedRows, col: selectedColumns, bombs: vm.createBomb())
         self.nameOfField = ""
         vm.clearField()
     }

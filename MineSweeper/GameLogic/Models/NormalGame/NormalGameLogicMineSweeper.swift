@@ -12,14 +12,26 @@ final class NormalGameLogicMineSweeper: GameLogicMineSweeperProtocol {
     var bombs = [CoordField]()
     var checkBombs = [CoordField]()
     var gameStatus: GameStatus = .start
+    var gameType: GameTypes
+    
     let createManager = CreateFieldGameMineSweeper()
     
+    init (gameType: GameTypes) {
+        self.gameType = gameType
+    }
+    
+    
     func createMineSweeper(bombs: [CoordField], rows: Int, columns: Int) -> [[GameCell]] {
-        if gameStatus == .start {
-            return Array(repeating: Array(repeating: GameCell(value: 0), count: columns), count: rows)
+        if gameType == .normal {
+            if gameStatus == .start {
+                return Array(repeating: Array(repeating: GameCell(value: 0), count: columns), count: rows)
+            } else {
+                return createManager.createMineSweeper(bombs: bombs, rows: rows, columns: columns)
+            }
         } else {
             return createManager.createMineSweeper(bombs: bombs, rows: rows, columns: columns)
         }
+        
     }
     
     func click(field: [[GameCell]], givenI: Int, givenJ: Int) -> [[GameCell]] {
@@ -29,20 +41,25 @@ final class NormalGameLogicMineSweeper: GameLogicMineSweeperProtocol {
         let columns = field.first!.count
         
         if gameStatus == .start {
-            let bombs = createManager.createBobms(rows: rows, columns: columns, givenI: givenI, givenJ: givenJ)
-            self.bombs = bombs
-            let newField = createManager.createMineSweeper(bombs: bombs, rows: rows, columns: columns)
-            self.gameStatus = .game
-            return click(field: newField, givenI: givenI, givenJ: givenJ)
+            if gameType == .normal {
+                let bombs = createManager.createBobms(rows: rows, columns: columns, givenI: givenI, givenJ: givenJ)
+                self.bombs = bombs
+                let newField = createManager.createMineSweeper(bombs: bombs, rows: rows, columns: columns)
+                self.gameStatus = .game
+                return click(field: newField, givenI: givenI, givenJ: givenJ)
+            } else {
+                gameStatus = .game
+            }
+            
         } else {
             var queue = Queue<[Int]>()
             
             let rows = newField.count
             let columns = newField.first?.count
             
-            if gameStatus == .start {
-                gameStatus = .game
-            }
+//            if gameStatus == .start {
+//                gameStatus = .game
+//            }
             
             if newField[givenI][givenJ].value == -1 {
                 self.gameStatus = .lose
@@ -71,8 +88,9 @@ final class NormalGameLogicMineSweeper: GameLogicMineSweeperProtocol {
                     }
                 }
             }
-            return newField
+            
         }
+        return newField
     }
     
     func marked(field: [[GameCell]], givenI: Int, givenJ: Int) -> [[GameCell]] {

@@ -27,10 +27,10 @@ struct MenuView: View {
                         coordinator.next(.preSavedGame)
                     }
                     MenuButtonView(text: "Create field", image: Image(systemName: "rectangle.checkered")){
-                        coordinator.next(.create)
+                        coordinator.next(.create(field: nil))
                     }
                     MenuButtonView(text: "Settings", image: Image(systemName: "gearshape.fill")){
-                        coordinator.next(.create)
+                        coordinator.next(.create(field: nil))
                     }
                     
                 }

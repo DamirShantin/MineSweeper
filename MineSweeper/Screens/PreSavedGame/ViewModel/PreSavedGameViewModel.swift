@@ -9,7 +9,7 @@ import Foundation
 
 class PreSavedGameViewModel: ObservableObject{
     
-    @Published var fields = [Field]()
+    @Published var fields = [GameField]()
     
     var storage: StorageModel
     

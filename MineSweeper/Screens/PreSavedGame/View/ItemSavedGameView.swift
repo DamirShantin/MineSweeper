@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ItemSavedGameView: View {
     
-    @Binding var selectedField: Field
+    @Binding var selectedField: GameField
     @State private var isLike: Bool = false
     
-    var field: Field
+    var field: GameField
     
     var sizeField: String {
         let sizeString = "\(field.rows) x \(field.columns)"
@@ -25,7 +25,7 @@ struct ItemSavedGameView: View {
         return heightButton
     }
     
-    var action: (Field) -> Void
+    var action: (GameField) -> Void
     var delete: (String) -> ()
     var detail: (String) -> ()
     

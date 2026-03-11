@@ -14,16 +14,16 @@ final class Coordinator: ObservableObject {
     @Published var path = [Step]()
     
     enum Step: Hashable {
-        case savedGame, preSavedGame, create, preGame, game(demention: CoordField)
+        case savedGame, preSavedGame, create(field: GameField?), preGame, game(gameField: GameField, type: GameTypes)
         var view: some View {
             NavigationView{
                 Group {
                     switch self {
                     case .preSavedGame: PreSavedGameViewImpl()
-                    case .create: CreateViewImpl()
+                    case .create(let field): CreateViewImpl(field: field)
                     case .savedGame: SavedGameViewImpl()
                     case .preGame: PreGameViewImpl()
-                    case .game(let demention): GameViewImpl(demention: demention)
+                    case .game(let gameField, let type): GameViewImpl(gameField: gameField, type: type)
                     }
                 }
                 .edgeSwipeRight { shared.back() }

@@ -16,16 +16,14 @@ final class GameViewModel: ObservableObject {
     var rows: Int
     var columns: Int
     var countMines: Int
-    
     var game : NormalGameMineSweeper
-    
-    var demention: CoordField
-    
-    init(game: NormalGameMineSweeper, demention: CoordField) {
+    var gameField: GameField
+
+    init(game: NormalGameMineSweeper, gameField: GameField) {
         self.game = game
-        self.demention = demention
-        self.rows = demention.x
-        self.columns = demention.y
+        self.gameField = gameField
+        self.rows = gameField.rows
+        self.columns = gameField.columns
         self.countMines = MineCountService().createNumbersOfBombs(rows: rows, columns: columns)
         start()
     }

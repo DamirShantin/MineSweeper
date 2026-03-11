@@ -16,7 +16,7 @@ class SavedGameViewModel: ObservableObject {
     
     var game : SavedGameMineSweeper
     var storage: StorageModel
-    var selectedField: Field
+    var selectedField: GameField
     var rows: Int
     var columns: Int
     

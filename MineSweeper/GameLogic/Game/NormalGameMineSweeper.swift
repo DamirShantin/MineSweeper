@@ -10,7 +10,7 @@ import Foundation
 final class NormalGameMineSweeper: GameProtocol {
     
     var gameLogic: GameLogicMineSweeperProtocol
-    var demention: CoordField
+    var gameField: GameField
     var rows: Int
     var columns: Int
     
@@ -27,11 +27,11 @@ final class NormalGameMineSweeper: GameProtocol {
     
     private var curentField = [[GameCell]]()
     
-    init(gameLogic: GameLogicMineSweeperProtocol, demention: CoordField) {
+    init(gameLogic: GameLogicMineSweeperProtocol, gameField: GameField) {
         self.gameLogic = gameLogic
-        self.demention = demention
-        self.rows = demention.x
-        self.columns = demention.y
+        self.gameField = gameField
+        self.rows = gameField.rows
+        self.columns = gameField.columns
         start()
     }
 

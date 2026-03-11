@@ -24,7 +24,7 @@ final class PreGameViewModel: ObservableObject {
     }
     
     func startGame() {
-        let demention = CoordField(x: rows, y: columns)
-        Coordinator.shared.next(.game(demention: demention))
+        let gameField = GameField(name: "", rows: rows, columns: columns, bombs: [], id: "")
+        Coordinator.shared.next(.game(gameField: gameField, type: .normal))
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 final class SingltonStorage: StorageModel {
-    var fields: [Field] = []
+    var fields: [GameField] = []
     
    
     static var shared = SingltonStorage()
@@ -16,12 +16,12 @@ final class SingltonStorage: StorageModel {
         loadData()
     }
     
-    var storage = [String : Field]()
+    var storage = [String : GameField]()
     var storageBombs = [String : [CoordField]]()
-    var selectedField: Field?
+    var selectedField: GameField?
     
     func saveData(name: String, row: Int, col: Int, bombs: [CoordField]) {
-        let field = Field(name: name, rows: row, columns: col, bombs: bombs, id: UUID().uuidString)
+        let field = GameField(name: name, rows: row, columns: col, bombs: bombs, id: UUID().uuidString)
         storage[field.id] = field
     }
     

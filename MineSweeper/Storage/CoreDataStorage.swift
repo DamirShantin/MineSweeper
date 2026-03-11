@@ -16,8 +16,8 @@ final class CoreDataStorage: StorageModel{
         loadData()
     }
     
-    var selectedField: Field?
-    var fields: [Field] = []
+    var selectedField: GameField?
+    var fields: [GameField] = []
     
     //MARK: Container
     lazy var persistentContainer: NSPersistentContainer = {
@@ -95,7 +95,7 @@ final class CoreDataStorage: StorageModel{
         saveContext()
     }
     
-    private func convert(_ field: ModelField_) -> Field {
+    private func convert(_ field: ModelField_) -> GameField {
         let id = field.id_!
         let name = field.name_
         let row = Int(field.row_)
@@ -111,6 +111,6 @@ final class CoreDataStorage: StorageModel{
                 }
             }
         }
-        return Field(name: name, rows: row, columns: column, bombs: bombs, id: id)
+        return GameField(name: name, rows: row, columns: column, bombs: bombs, id: id)
     }
 }

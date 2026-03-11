@@ -9,10 +9,14 @@ import Foundation
 import SwiftUI
 
 struct CreateViewImpl: View {
-    var vm = CreateFieldsViewModel()
+    var field: GameField?
     var storage = StorageService.shared.storage
     
+//    func createVM() -> CreateFieldsViewModel {
+//        return CreateFieldsViewModel(field: field)
+//    }
+    
     var body: some View {
-        CreateView(vm: vm, storage: storage)
+        CreateView(vm: CreateFieldsViewModel(gameField: field), storage: storage)
     }
 }
