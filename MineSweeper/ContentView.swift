@@ -21,6 +21,22 @@ struct ContentView: View {
                     .navigationBarBackButtonHidden(true)
 
             }
+            .overlay(popupLayer)
+        }
+    }
+}
+
+extension ContentView {
+    var popupLayer: some View {
+        ZStack{
+            if let popup = main.popupRoute {
+                ZStack {
+                    Color.white.opacity(0.85).ignoresSafeArea(.all)
+                        .onTapGesture { main.popupRoute = nil }
+                    
+                    popup.view
+                }
+            }
         }
     }
 }

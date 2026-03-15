@@ -29,7 +29,7 @@ struct SliderAndScrollView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVStack(spacing: 5) {
                     ForEach(0..<count, id: \.self) { i in
-                        ItemSavedGameView (selectedField: $selectField, field: vm.fields[i]) { field in selectField = field }
+                        ItemSavedField (selectedField: $selectField, field: vm.fields[i]) { field in selectField = field }
                         delete: { id in vm.deleteField(id: id) }
                         detail: { id in vm.detailField(id: id) }
                             .padding(.vertical, 6)
@@ -40,12 +40,12 @@ struct SliderAndScrollView: View {
         }
         .padding(.horizontal, 10)
         .frame(height: 450, alignment: .leading)
-        .background(
-            RoundedRectangle(cornerRadius: 20)
-                .frame(width: UIScreen.main.bounds.width - 50, height: 480)
-                .foregroundStyle(.blue.opacity(0.3))
-                .shadow(radius: 10)
-        )
+//        .background(
+//            RoundedRectangle(cornerRadius: 20)
+//                .frame(width: UIScreen.main.bounds.width - 50, height: 480)
+//                .foregroundStyle(.blue.opacity(0.3))
+//                .shadow(radius: 10)
+//        )
     }
 }
 
