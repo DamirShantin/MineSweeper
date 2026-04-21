@@ -39,7 +39,7 @@ final class Coordinator: ObservableObject {
         
         var view: some View {
             switch self {
-            case .detailField(field: let field): DetailFieldViewImpl(field: field)
+            case .detailField(let field): DetailFieldViewImpl(field: field)
             }
         }
     }

@@ -14,8 +14,8 @@ class CreateFieldsViewModel: ObservableObject, FieldValidationProtocol {
     var gameField: GameField?
     var numberOfBombs = MineCountService() // test
     
-    var rows: Int = 4
-    var columns: Int = 4
+    private var rows: Int = 4
+    private var columns: Int = 4
     
     var bombs = [CoordField]()
     
@@ -30,7 +30,7 @@ class CreateFieldsViewModel: ObservableObject, FieldValidationProtocol {
             countBombs = count  
     }
     
-    func createField() {
+    private func createField() {
         if !bombs.isEmpty {
             var grid = Array(repeating: Array(repeating: true, count: self.columns), count: rows)
             for bomb in bombs {
@@ -62,6 +62,22 @@ class CreateFieldsViewModel: ObservableObject, FieldValidationProtocol {
         createField()
 //        self.game.field = [[GameCell]]()
 //        self.game.bombs = [CoordField]()
+    }
+    
+    func updateRows(to value: Int) {
+        self.rows = value
+    }
+    
+    func updateColumns(to value: Int) {
+        self.columns = value
+    }
+    
+    func updateField(_ with: PeiceField, value: Int){
+        switch with {
+            case .row: updateRows(to: value)
+            case .column: updateColumns(to: value)
+        }
+        createField()
     }
     
     private func config() {

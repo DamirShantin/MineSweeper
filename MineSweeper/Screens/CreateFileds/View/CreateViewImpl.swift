@@ -11,12 +11,13 @@ import SwiftUI
 struct CreateViewImpl: View {
     var field: GameField?
     var storage = StorageService.shared.storage
+    let range = RangeWrapper(lower: 4, upper: 20)
     
 //    func createVM() -> CreateFieldsViewModel {
 //        return CreateFieldsViewModel(field: field)
 //    }
     
     var body: some View {
-        CreateView(vm: CreateFieldsViewModel(gameField: field), storage: storage)
+        CreateView(vm: CreateFieldsViewModel(gameField: field), storage: storage, range: range)
     }
 }

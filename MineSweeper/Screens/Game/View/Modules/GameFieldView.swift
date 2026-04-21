@@ -15,7 +15,7 @@ struct GameFieldView: View {
     var body: some View {
         ZStack {
             VStack {
-                GridView(rows: vm.rows, columns: vm.columns) { row, col in
+                GridView(rows: vm.rows, columns: vm.columns, spacing: 0) { row, col in
                     GameCellView(isActive: $vm.field[row][col].clicked, value: $vm.field[row][col].value, isMarked: $vm.field[row][col].marked){
                         vm.click(row: row, column: col)
                         

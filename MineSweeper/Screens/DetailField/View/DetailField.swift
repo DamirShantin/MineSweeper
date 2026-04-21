@@ -32,7 +32,7 @@ struct DetailField: View {
                         .padding(.top)
                     
                     
-                    GridView(rows: vm.field.rows, columns: vm.field.columns) { row, col in
+                    GridView(rows: vm.field.rows, columns: vm.field.columns, spacing: 0) { row, col in
                         DetailCellView(isBomb: vm.fieldView[row][col])
                     }
                     
